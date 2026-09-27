@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Register | Smart Community 360°</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+
+        /* =========================================
+           REGISTER PAGE
+           ========================================= */
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(8, 127, 91, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(22, 119, 255, 0.10),
+                    transparent 30%
+                ),
+                #f7fafc;
+        }
+
+
+        .register-page {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 20px;
+        }
+
+
+        .register-container {
+            width: min(1100px, 100%);
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                0.95fr;
+
+            overflow: hidden;
+
+            border: 1px solid #dce7e3;
+
+            border-radius: 28px;
+
+            background: white;
+
+            box-shadow:
+                0 25px 70px
+                rgba(16, 42, 67, 0.13);
+        }
+
+
+        /* =========================================
+           LEFT PANEL
+           ========================================= */
+
+        .register-info {
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            min-height: 700px;
+
+            padding: 50px;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(255,255,255,0.15),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    145deg,
+                    #087f5b,
+                    #056044
+                );
+        }
+
+
+        .register-info::before {
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            right: -160px;
+            bottom: -140px;
+
+            border:
+                65px solid
+                rgba(255,255,255,0.06);
+
+            border-radius: 50%;
+        }
+
+
+        .register-brand {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .register-logo {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(255,255,255,0.16);
+
+            font-size: 28px;
+        }
+
+
+        .register-brand h2 {
+            font-size: 22px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .register-brand span {
+            color: #bdf3dc;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .register-message {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .register-message h1 {
+            max-width: 430px;
+
+            font-size: 43px;
+
+            line-height: 1.08;
+
+            margin-bottom: 20px;
+        }
+
+
+        .register-message p {
+            max-width: 420px;
+
+            color: #d5eee5;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           BENEFITS
+           ========================================= */
+
+        .register-benefits {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 12px;
+        }
+
+
+        .benefit {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #e4f8f0;
+
+            font-size: 11px;
+        }
+
+
+        .benefit-icon {
+            width: 28px;
+            height: 28px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,0.13);
+        }
+
+
+        /* =========================================
+           FORM SECTION
+           ========================================= */
+
+        .register-form-section {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px;
+        }
+
+
+        .register-form-box {
+            width: min(450px, 100%);
+        }
+
+
+        .back-home {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #627d98;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 35px;
+
+            transition: 0.2s ease;
+        }
+
+
+        .back-home:hover {
+            color: #087f5b;
+        }
+
+
+        .form-heading {
+            margin-bottom: 25px;
+        }
+
+
+        .form-heading .label {
+            display: inline-block;
+
+            margin-bottom: 9px;
+
+            color: #087f5b;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+        }
+
+
+        .form-heading h1 {
+            color: #102a43;
+
+            font-size: 34px;
+
+            line-height: 1.15;
+
+            margin-bottom: 9px;
+        }
+
+
+        .form-heading p {
+            color: #627d98;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           FORM GRID
+           ========================================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 16px;
+        }
+
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+
+        .input-group.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .input-group label {
+            display: block;
+
+            color: #243b53;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 15px;
+        }
+
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+
+            height: 47px;
+
+            padding:
+                0 13px 0 40px;
+
+            outline: none;
+
+            border:
+                1px solid #d9e2ec;
+
+            border-radius: 10px;
+
+            color: #102a43;
+
+            background: #fbfdff;
+
+            font-size: 12px;
+
+            transition: 0.25s ease;
+        }
+
+
+        .input-group select {
+            padding-left: 40px;
+
+            cursor: pointer;
+        }
+
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #087f5b;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(8,127,91,0.08);
+        }
+
+
+        /* =========================================
+           PASSWORD
+           ========================================= */
+
+        .password-note {
+            color: #829ab1;
+
+            font-size: 9px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================
+           TERMS
+           ========================================= */
+
+        .terms {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 8px;
+
+            margin: 5px 0 18px;
+        }
+
+
+        .terms input {
+            margin-top: 2px;
+
+            accent-color: #087f5b;
+        }
+
+
+        .terms label {
+            color: #627d98;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .terms a {
+            color: #087f5b;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           REGISTER BUTTON
+           ========================================= */
+
+        .register-submit {
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087f5b,
+                    #056044
+                );
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(8,127,91,0.20);
+
+            transition: 0.25s ease;
+        }
+
+
+        .register-submit:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(8,127,91,0.25);
+        }
+
+
+        /* =========================================
+           LOGIN LINK
+           ========================================= */
+
+        .login-text {
+            margin-top: 20px;
+
+            text-align: center;
+
+            color: #829ab1;
+
+            font-size: 12px;
+        }
+
+
+        .login-text a {
+            color: #087f5b;
+
+            font-weight: 800;
+        }
+
+
+        .secure-note {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 6px;
+
+            margin-top: 18px;
+
+            color: #829ab1;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+
+        @media (max-width: 850px) {
+
+            .register-container {
+                grid-template-columns: 1fr;
+            }
+
+
+            .register-info {
+                min-height: 360px;
+
+                padding: 35px;
+            }
+
+
+            .register-message h1 {
+                font-size: 34px;
+            }
+
+
+            .register-benefits {
+                display: none;
+            }
+
+
+            .register-form-section {
+                padding: 40px 30px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .register-page {
+                padding: 15px;
+            }
+
+
+            .register-container {
+                border-radius: 20px;
+            }
+
+
+            .register-info {
+                min-height: 300px;
+
+                padding: 28px;
+            }
+
+
+            .register-message h1 {
+                font-size: 30px;
+            }
+
+
+            .register-form-section {
+                padding: 30px 22px;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .input-group.full {
+                grid-column: auto;
+            }
+
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="register-page">
+
+
+        <div class="register-container">
+
+
+            <!-- =====================================
+                 LEFT INFORMATION
+                 ===================================== -->
+
+            <section class="register-info">
+
+
+                <div class="register-brand">
+
+                    <div class="register-logo">
+                        🌱
+                    </div>
+
+
+                    <h2>
+                        Smart Community 360°
+                    </h2>
+
+
+                    <span>
+                        SUSTAINABLE CITIES • CONNECTED CITIZENS
+                    </span>
+
+                </div>
+
+
+                <div class="register-message">
+
+                    <h1>
+                        Be Part of
+                        <br>
+                        the Change.
+                    </h1>
+
+
+                    <p>
+                        Create your community account and
+                        become an active participant in making
+                        your neighborhood safer, cleaner and
+                        more sustainable.
+                    </p>
+
+                </div>
+
+
+                <div class="register-benefits">
+
+
+                    <div class="benefit">
+
+                        <span class="benefit-icon">
+                            📍
+                        </span>
+
+                        Report local issues
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="benefit-icon">
+                            📊
+                        </span>
+
+                        Track community progress
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="benefit-icon">
+                            🏙️
+                        </span>
+
+                        Connect with your community
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="benefit-icon">
+                            🌱
+                        </span>
+
+                        Support SDG 11
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 REGISTER FORM
+                 ===================================== -->
+
+            <section class="register-form-section">
+
+
+                <div class="register-form-box">
+
+
+                    <a
+                        href="../index.html"
+                        class="back-home"
+                    >
+                        ← Back to Home
+                    </a>
+
+
+                    <div class="form-heading">
+
+                        <span class="label">
+                            COMMUNITY PORTAL
+                        </span>
+
+
+                        <h1>
+                            Create Account
+                        </h1>
+
+
+                        <p>
+                            Join Smart Community 360° today.
+                        </p>
+
+                    </div>
+
+
+                    <form id="registerForm">
+
+
+                        <div class="form-grid">
+
+
+                            <!-- First Name -->
+
+                            <div class="input-group">
+
+                                <label for="firstName">
+                                    First Name
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        👤
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        id="firstName"
+                                        placeholder="First name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Last Name -->
+
+                            <div class="input-group">
+
+                                <label for="lastName">
+                                    Last Name
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        👤
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        id="lastName"
+                                        placeholder="Last name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div class="input-group full">
+
+                                <label for="email">
+                                    Email Address
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        ✉️
+                                    </span>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="Enter your email address"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Mobile -->
+
+                            <div class="input-group">
+
+                                <label for="mobile">
+                                    Mobile Number
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        📱
+                                    </span>
+
+                                    <input
+                                        type="tel"
+                                        id="mobile"
+                                        placeholder="10-digit number"
+                                        pattern="[0-9]{10}"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Role -->
+
+                            <div class="input-group">
+
+                                <label for="role">
+                                    Community Role
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        🏘️
+                                    </span>
+
+                                    <select
+                                        id="role"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select role
+                                        </option>
+
+                                        <option value="citizen">
+                                            Citizen
+                                        </option>
+
+                                        <option value="student">
+                                            Student
+                                        </option>
+
+                                        <option value="volunteer">
+                                            Community Volunteer
+                                        </option>
+
+                                        <option value="resident">
+                                            Resident
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- City -->
+
+                            <div class="input-group full">
+
+                                <label for="city">
+                                    City / Community
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        📍
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        id="city"
+                                        placeholder="Enter your city or community"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Password -->
+
+                            <div class="input-group">
+
+                                <label for="password">
+                                    Password
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        🔒
+                                    </span>
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        placeholder="Create password"
+                                        minlength="6"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Confirm -->
+
+                            <div class="input-group">
+
+                                <label for="confirmPassword">
+                                    Confirm Password
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        🔐
+                                    </span>
+
+                                    <input
+                                        type="password"
+                                        id="confirmPassword"
+                                        placeholder="Confirm password"
+                                        minlength="6"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="password-note">
+                            Use at least 6 characters for your password.
+                        </div>
+
+
+                        <!-- Terms -->
+
+                        <div class="terms">
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                required
+                            >
+
+
+                            <label for="terms">
+
+                                I agree to the
+                                <a href="#">
+                                    Community Guidelines
+                                </a>
+                                and
+                                <a href="#">
+                                    Terms of Use
+                                </a>.
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- Submit -->
+
+                        <button
+                            type="submit"
+                            class="register-submit"
+                        >
+                            CREATE COMMUNITY ACCOUNT
+                        </button>
+
+
+                    </form>
+
+
+                    <p class="login-text">
+
+                        Already have an account?
+
+                        <a href="login.html">
+                            Login
+                        </a>
+
+                    </p>
+
+
+                    <div class="secure-note">
+
+                        🔐 Your information is securely handled
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+    // =========================================
+    // SMART COMMUNITY 360°
+    // REAL BACKEND REGISTRATION
+    // =========================================
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    registerForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        // =========================================
+        // GET FORM VALUES
+        // =========================================
+
+        const firstName =
+            document.getElementById("firstName").value.trim();
+
+        const lastName =
+            document.getElementById("lastName").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const mobile =
+            document.getElementById("mobile").value.trim();
+
+        const role =
+            document.getElementById("role").value;
+
+        const city =
+            document.getElementById("city").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+
+        // =========================================
+        // PASSWORD CHECK
+        // =========================================
+
+        if (password !== confirmPassword) {
+
+            alert("Passwords do not match.");
+
+            return;
+        }
+
+
+        // =========================================
+        // PASSWORD LENGTH CHECK
+        // =========================================
+
+        if (password.length < 6) {
+
+            alert("Password must contain at least 6 characters.");
+
+            return;
+        }
+
+
+        // =========================================
+        // ROLE CHECK
+        // =========================================
+
+        if (!role) {
+
+            alert("Please select your community role.");
+
+            return;
+        }
+
+
+        // =========================================
+        // CREATE FULL NAME
+        // =========================================
+
+        const name =
+            `${firstName} ${lastName}`.trim();
+
+
+        // =========================================
+        // SEND DATA TO BACKEND
+        // =========================================
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:5000/api/auth/register",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        name: name,
+
+                        email: email,
+
+                        phone: mobile,
+
+                        password: password,
+
+                        address: "",
+
+                        city: city
+
+                    })
+                }
+            );
+
+
+            // =========================================
+            // READ BACKEND RESPONSE
+            // =========================================
+
+            const data = await response.json();
+
+
+            // =========================================
+            // REGISTRATION SUCCESS
+            // =========================================
+
+            if (response.ok && data.success) {
+
+                alert(
+                    "Registration successful! 🎉\n\n" +
+                    "Your Smart Community 360° account has been created."
+                );
+
+                // Redirect to login page
+                window.location.href = "login.html";
+
+                return;
+            }
+
+
+            // =========================================
+            // REGISTRATION FAILED
+            // =========================================
+
+            alert(
+                data.message ||
+                "Registration failed. Please try again."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+            alert(
+                "Unable to connect to the backend.\n\n" +
+                "Please make sure the backend server is running on port 5000."
+            );
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

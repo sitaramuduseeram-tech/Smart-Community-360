@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Smart Community 360°</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+
+    <style>
+
+        /* =========================================
+           LOGIN PAGE
+           ========================================= */
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(8, 127, 91, 0.12),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(22, 119, 255, 0.10),
+                    transparent 30%
+                ),
+
+                #f7fafc;
+        }
+
+
+        .login-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px 20px;
+        }
+
+
+        .login-container {
+
+            width: min(1050px, 100%);
+
+            min-height: 620px;
+
+            display: grid;
+
+            grid-template-columns: 0.9fr 1.1fr;
+
+            overflow: hidden;
+
+            border: 1px solid #dce7e3;
+
+            border-radius: 28px;
+
+            background: white;
+
+            box-shadow:
+                0 25px 70px rgba(16, 42, 67, 0.13);
+        }
+
+
+        /* =========================================
+           LEFT PANEL
+           ========================================= */
+
+        .login-info {
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 50px;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(255,255,255,0.15),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    #087f5b,
+                    #056044
+                );
+        }
+
+
+        .login-info::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            right: -130px;
+
+            bottom: -120px;
+
+            border: 60px solid rgba(255,255,255,0.06);
+
+            border-radius: 50%;
+        }
+
+
+        .login-brand {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .login-logo {
+
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 17px;
+
+            background: rgba(255,255,255,0.16);
+
+            font-size: 28px;
+        }
+
+
+        .login-brand h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .login-brand span {
+
+            color: #bdf3dc;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .login-message {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .login-message h1 {
+
+            max-width: 400px;
+
+            font-size: 43px;
+
+            line-height: 1.08;
+
+            margin-bottom: 20px;
+        }
+
+
+        .login-message p {
+
+            max-width: 410px;
+
+            color: #d5eee5;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        .login-features {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+
+        .login-feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: #e4f8f0;
+
+            font-size: 12px;
+        }
+
+
+        .feature-check {
+
+            width: 26px;
+
+            height: 26px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.13);
+        }
+
+
+        /* =========================================
+           RIGHT FORM
+           ========================================= */
+
+        .login-form-section {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 55px;
+        }
+
+
+        .login-form-box {
+
+            width: min(420px, 100%);
+        }
+
+
+        .back-home {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #627d98;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 45px;
+
+            transition: 0.2s ease;
+        }
+
+
+        .back-home:hover {
+
+            color: #087f5b;
+        }
+
+
+        .form-heading {
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-heading .label {
+
+            display: inline-block;
+
+            margin-bottom: 9px;
+
+            color: #087f5b;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+        }
+
+
+        .form-heading h1 {
+
+            color: #102a43;
+
+            font-size: 34px;
+
+            line-height: 1.15;
+
+            margin-bottom: 9px;
+        }
+
+
+        .form-heading p {
+
+            color: #627d98;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           FORM
+           ========================================= */
+
+        .input-group {
+
+            margin-bottom: 19px;
+        }
+
+
+        .input-group label {
+
+            display: block;
+
+            color: #243b53;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 16px;
+        }
+
+
+        .input-group input {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px 0 43px;
+
+            outline: none;
+
+            border: 1px solid #d9e2ec;
+
+            border-radius: 11px;
+
+            color: #102a43;
+
+            background: #fbfdff;
+
+            font-size: 13px;
+
+            transition: 0.25s ease;
+        }
+
+
+        .input-group input:focus {
+
+            border-color: #087f5b;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(8,127,91,0.08);
+        }
+
+
+        .password-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #627d98;
+
+            font-size: 11px;
+        }
+
+
+        .remember input {
+
+            accent-color: #087f5b;
+        }
+
+
+        .forgot-password {
+
+            color: #087f5b;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           LOGIN BUTTON
+           ========================================= */
+
+        .login-submit {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087f5b,
+                    #056044
+                );
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px rgba(8,127,91,0.20);
+
+            transition: 0.25s ease;
+        }
+
+
+        .login-submit:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(8,127,91,0.25);
+        }
+
+
+        .login-submit:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        .register-text {
+
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #829ab1;
+
+            font-size: 12px;
+        }
+
+
+        .register-text a {
+
+            color: #087f5b;
+
+            font-weight: 800;
+        }
+
+
+        .secure-note {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            margin-top: 25px;
+
+            color: #829ab1;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+
+        @media (max-width: 800px) {
+
+            .login-container {
+
+                grid-template-columns: 1fr;
+
+                max-width: 550px;
+            }
+
+
+            .login-info {
+
+                min-height: 330px;
+
+                padding: 35px;
+            }
+
+
+            .login-message h1 {
+
+                font-size: 34px;
+            }
+
+
+            .login-features {
+
+                display: none;
+            }
+
+
+            .login-form-section {
+
+                padding: 40px 30px;
+            }
+
+
+            .back-home {
+
+                margin-bottom: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .login-page {
+
+                padding: 15px;
+            }
+
+
+            .login-container {
+
+                border-radius: 20px;
+            }
+
+
+            .login-info {
+
+                min-height: 290px;
+
+                padding: 28px;
+            }
+
+
+            .login-message h1 {
+
+                font-size: 30px;
+            }
+
+
+            .login-form-section {
+
+                padding: 30px 22px;
+            }
+
+
+            .form-heading h1 {
+
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="login-page">
+
+
+        <div class="login-container">
+
+
+            <!-- =====================================
+                 LEFT INFORMATION PANEL
+                 ===================================== -->
+
+            <section class="login-info">
+
+
+                <div class="login-brand">
+
+
+                    <div class="login-logo">
+                        🌱
+                    </div>
+
+
+                    <h2>
+                        Smart Community 360°
+                    </h2>
+
+
+                    <span>
+                        SUSTAINABLE CITIES • CONNECTED CITIZENS
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="login-message">
+
+
+                    <h1>
+
+                        Your Community.
+                        <br>
+                        Your Voice.
+
+                    </h1>
+
+
+                    <p>
+
+                        Connect with your community, report
+                        local issues, track improvements and
+                        participate in building a safer,
+                        cleaner and more sustainable place.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="login-features">
+
+
+                    <div class="login-feature">
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Report community issues
+
+                    </div>
+
+
+
+                    <div class="login-feature">
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Track issue progress
+
+                    </div>
+
+
+
+                    <div class="login-feature">
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Support sustainable communities
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 LOGIN FORM
+                 ===================================== -->
+
+            <section class="login-form-section">
+
+
+                <div class="login-form-box">
+
+
+                    <a
+                        href="../index.html"
+                        class="back-home"
+                    >
+
+                        ← Back to Home
+
+                    </a>
+
+
+
+                    <div class="form-heading">
+
+
+                        <span class="label">
+                            COMMUNITY PORTAL
+                        </span>
+
+
+                        <h1>
+                            Welcome Back
+                        </h1>
+
+
+                        <p>
+
+                            Login to continue to your
+                            community dashboard.
+
+                        </p>
+
+
+                    </div>
+
+
+
+                    <form id="loginForm">
+
+
+                        <!-- EMAIL -->
+
+                        <div class="input-group">
+
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    ✉️
+                                </span>
+
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="input-group">
+
+
+                            <label for="password">
+                                Password
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <span class="input-icon">
+                                    🔒
+                                </span>
+
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Enter your password"
+                                    required
+                                >
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- REMEMBER / FORGOT -->
+
+                        <div class="password-row">
+
+
+                            <label class="remember">
+
+
+                                <input
+                                    type="checkbox"
+                                    id="remember"
+                                >
+
+
+                                Remember me
+
+
+                            </label>
+
+
+
+                            <a
+                                href="#"
+                                class="forgot-password"
+                                onclick="alert('Password recovery will be connected later.')"
+                            >
+
+                                Forgot password?
+
+                            </a>
+
+
+                        </div>
+
+
+
+                        <!-- LOGIN BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="login-submit"
+                        >
+
+                            LOGIN TO COMMUNITY
+
+                        </button>
+
+
+                    </form>
+
+
+
+                    <!-- REGISTER -->
+
+                    <p class="register-text">
+
+
+                        Don't have an account?
+
+
+                        <a href="register.html">
+
+                            Create Account
+
+                        </a>
+
+
+                    </p>
+
+
+
+                    <div class="secure-note">
+
+                        🔐 Your community account is protected
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =============================================
+         REAL BACKEND LOGIN
+         ============================================= -->
+
+    <script>
+
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+
+                // =====================================
+                // GET FORM VALUES
+                // =====================================
+
+                const email =
+                    document.getElementById("email")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document.getElementById("password")
+                        .value;
+
+
+
+                // =====================================
+                // BASIC VALIDATION
+                // =====================================
+
+                if (!email || !password) {
+
+                    alert(
+                        "Please enter your email and password."
+                    );
+
+                    return;
+
+                }
+
+
+
+                // =====================================
+                // LOGIN BUTTON
+                // =====================================
+
+                const loginButton =
+                    document.querySelector(
+                        ".login-submit"
+                    );
+
+
+                const originalButtonText =
+                    loginButton.textContent;
+
+
+                loginButton.disabled = true;
+
+
+                loginButton.textContent =
+                    "LOGGING IN...";
+
+
+
+                // =====================================
+                // SEND LOGIN REQUEST TO BACKEND
+                // =====================================
+
+                try {
+
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/auth/login",
+                            {
+
+                                method: "POST",
+
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+
+                                body: JSON.stringify({
+
+                                    email: email,
+
+                                    password: password
+
+                                })
+
+                            }
+                        );
+
+
+
+                    // =================================
+                    // READ BACKEND RESPONSE
+                    // =================================
+
+                    const data =
+                        await response.json();
+
+
+
+                    // =================================
+                    // LOGIN SUCCESS
+                    // =================================
+
+                    if (
+                        response.ok &&
+                        data.success
+                    ) {
+
+
+                        // Save JWT token
+
+                        localStorage.setItem(
+                            "smartCommunityToken",
+                            data.token
+                        );
+
+
+
+                        // Save logged-in user
+
+                        localStorage.setItem(
+                            "smartCommunityUser",
+                            JSON.stringify(
+                                data.user
+                            )
+                        );
+
+
+
+                        // =================================
+                        // REMEMBER ME
+                        // =================================
+
+                        const rememberMe =
+                            document.getElementById(
+                                "remember"
+                            ).checked;
+
+
+
+                        if (rememberMe) {
+
+
+                            localStorage.setItem(
+                                "smartCommunityRemember",
+                                "true"
+                            );
+
+
+                        } else {
+
+
+                            localStorage.removeItem(
+                                "smartCommunityRemember"
+                            );
+
+                        }
+
+
+
+                        // =================================
+                        // SUCCESS MESSAGE
+                        // =================================
+
+                        alert(
+                            "Login successful! 🎉\n\n" +
+                            "Welcome back, " +
+                            data.user.name +
+                            "!"
+                        );
+
+
+
+                        // =================================
+                        // GO TO DASHBOARD
+                        // =================================
+
+                        window.location.href =
+                            "dashboard.html";
+
+
+                        return;
+
+                    }
+
+
+
+                    // =================================
+                    // LOGIN FAILED
+                    // =================================
+
+                    alert(
+                        data.message ||
+                        "Invalid email or password."
+                    );
+
+
+                } catch (error) {
+
+
+                    // =================================
+                    // CONNECTION ERROR
+                    // =================================
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+
+                    alert(
+                        "Unable to connect to the backend.\n\n" +
+                        "Please make sure the backend server is running on port 5000."
+                    );
+
+
+                } finally {
+
+
+                    // =================================
+                    // RESTORE BUTTON
+                    // =================================
+
+                    loginButton.disabled = false;
+
+
+                    loginButton.textContent =
+                        originalButtonText;
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

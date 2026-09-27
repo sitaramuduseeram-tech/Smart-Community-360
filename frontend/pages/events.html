@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Events & Announcements | Smart Community 360°</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f6;
+            color: #1d2b24;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 72px;
+            background: #123c2a;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            background: #35b87f;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+
+            padding: 10px 18px;
+
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #35b87f;
+            border-color: #35b87f;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main-container {
+            max-width: 1250px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #718078;
+            line-height: 1.6;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero-banner {
+            background: linear-gradient(
+                135deg,
+                #123c2a,
+                #219b68
+            );
+
+            color: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 25px;
+
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content .tag {
+            display: inline-block;
+
+            background: rgba(255,255,255,0.15);
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            margin-bottom: 12px;
+        }
+
+        .hero-content h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            max-width: 650px;
+
+            color: rgba(255,255,255,0.85);
+
+            line-height: 1.6;
+        }
+
+        .hero-icon {
+            font-size: 85px;
+
+            opacity: 0.18;
+
+            position: absolute;
+
+            right: 40px;
+            top: 20px;
+        }
+
+        /* ================= CONTROLS ================= */
+
+        .controls {
+            background: white;
+
+            border: 1px solid #e5ede8;
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-bottom: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .search-box {
+            flex: 1;
+
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 13px 15px 13px 42px;
+
+            border: 1px solid #dce7e1;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            border-color: #219b68;
+        }
+
+        .search-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 12px;
+
+            color: #7c8a83;
+        }
+
+        .category-filter {
+            padding: 13px 15px;
+
+            border: 1px solid #dce7e1;
+
+            border-radius: 9px;
+
+            background: white;
+
+            outline: none;
+
+            min-width: 190px;
+
+            color: #37463e;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+        }
+
+        .section-header span {
+            color: #219b68;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        /* ================= EVENTS ================= */
+
+        .events-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .event-card {
+            background: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid #e5ede8;
+
+            box-shadow:
+                0 6px 22px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.09);
+        }
+
+        .event-image {
+            height: 150px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 58px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f7ef,
+                    #ccefe0
+                );
+        }
+
+        .event-body {
+            padding: 20px;
+        }
+
+        .event-tag {
+            display: inline-block;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            color: #16814f;
+
+            background: #e7f7ef;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .event-body h3 {
+            font-size: 17px;
+
+            margin-bottom: 9px;
+
+            line-height: 1.4;
+        }
+
+        .event-description {
+            color: #718078;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 15px;
+        }
+
+        .event-details {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            color: #56645d;
+
+            font-size: 12px;
+        }
+
+        .event-detail {
+            display: flex;
+
+            gap: 8px;
+
+            align-items: center;
+        }
+
+        .event-button {
+            width: 100%;
+
+            margin-top: 17px;
+
+            border: none;
+
+            background: #219b68;
+
+            color: white;
+
+            padding: 11px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .event-button:hover {
+            background: #167b51;
+        }
+
+        /* ================= ANNOUNCEMENTS ================= */
+
+        .announcements {
+            display: grid;
+
+            grid-template-columns:
+                1.4fr 0.8fr;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .announcement-panel,
+        .calendar-panel {
+            background: white;
+
+            border: 1px solid #e5ede8;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 6px 22px rgba(0,0,0,0.05);
+        }
+
+        .announcement-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+        .announcement {
+            display: flex;
+
+            gap: 14px;
+
+            padding: 15px;
+
+            border-radius: 11px;
+
+            background: #f7faf8;
+
+            border: 1px solid #edf2ef;
+        }
+
+        .announcement-icon {
+            width: 40px;
+            height: 40px;
+
+            min-width: 40px;
+
+            background: #e4f6ed;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 19px;
+        }
+
+        .announcement-content h4 {
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .announcement-content p {
+            font-size: 12px;
+
+            color: #718078;
+
+            line-height: 1.5;
+        }
+
+        .announcement-date {
+            font-size: 10px;
+
+            color: #219b68;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+        }
+
+        /* ================= CALENDAR ================= */
+
+        .calendar-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h3 {
+            font-size: 17px;
+        }
+
+        .calendar-month {
+            color: #219b68;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .calendar-days {
+            display: grid;
+
+            grid-template-columns:
+                repeat(7, 1fr);
+
+            gap: 6px;
+
+            text-align: center;
+        }
+
+        .day-name {
+            font-size: 10px;
+
+            color: #8a968f;
+
+            font-weight: bold;
+
+            padding-bottom: 5px;
+        }
+
+        .day {
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 11px;
+
+            border-radius: 7px;
+        }
+
+        .day.event-day {
+            background: #dff5e9;
+
+            color: #16814f;
+
+            font-weight: bold;
+
+            position: relative;
+        }
+
+        .day.today {
+            background: #219b68;
+
+            color: white;
+
+            font-weight: bold;
+        }
+
+        /* ================= NO RESULTS ================= */
+
+        .no-results {
+            display: none;
+
+            background: white;
+
+            border: 1px solid #e5ede8;
+
+            border-radius: 14px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            color: #718078;
+
+            margin-bottom: 25px;
+        }
+
+        .no-results div {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .events-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .announcements {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .main-container {
+                margin: 25px auto;
+
+                padding: 0 12px;
+            }
+
+            .page-heading h1 {
+                font-size: 25px;
+            }
+
+            .hero-banner {
+                padding: 24px;
+            }
+
+            .hero-content h2 {
+                font-size: 23px;
+            }
+
+            .hero-icon {
+                right: 10px;
+            }
+
+            .controls {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .category-filter {
+                width: 100%;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-image {
+                height: 135px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= TOPBAR ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🌱
+            </div>
+
+            <span>
+                Smart Community 360°
+            </span>
+
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="back-btn"
+        >
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <h1>
+                Events & Announcements
+            </h1>
+
+            <p>
+                Stay informed about community events,
+                important announcements and local programs.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero-banner">
+
+            <div class="hero-content">
+
+                <span class="tag">
+                    📢 COMMUNITY UPDATE
+                </span>
+
+                <h2>
+                    Building a Better Community Together
+                </h2>
+
+                <p>
+                    Discover upcoming events, public programs,
+                    awareness campaigns and important community
+                    announcements in one place.
+                </p>
+
+            </div>
+
+
+            <div class="hero-icon">
+                📅
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SEARCH / FILTER ================= -->
+
+        <div class="controls">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="eventSearch"
+                    placeholder="Search events and announcements..."
+                >
+
+            </div>
+
+
+            <select
+                class="category-filter"
+                id="categoryFilter"
+            >
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="environment">
+                    🌱 Environment
+                </option>
+
+                <option value="health">
+                    ❤️ Health
+                </option>
+
+                <option value="community">
+                    🏘️ Community
+                </option>
+
+                <option value="education">
+                    📚 Education
+                </option>
+
+                <option value="government">
+                    🏛️ Government
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================= UPCOMING EVENTS ================= -->
+
+        <div class="section-header">
+
+            <h2>
+                📅 Upcoming Events
+            </h2>
+
+            <span>
+                View All Events
+            </span>
+
+        </div>
+
+
+        <div
+            class="events-grid"
+            id="eventsGrid"
+        >
+
+
+            <!-- EVENT 1 -->
+
+            <article
+                class="event-card"
+                data-category="environment"
+                data-title="community clean up drive"
+            >
+
+                <div class="event-image">
+                    🧹
+                </div>
+
+                <div class="event-body">
+
+                    <span class="event-tag">
+                        ENVIRONMENT
+                    </span>
+
+                    <h3>
+                        Community Clean-Up Drive
+                    </h3>
+
+                    <p class="event-description">
+                        Join residents in keeping public spaces
+                        clean and creating a healthier community.
+                    </p>
+
+                    <div class="event-details">
+
+                        <div class="event-detail">
+                            📅
+                            <span>
+                                28 September 2026
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            🕘
+                            <span>
+                                9:00 AM – 12:00 PM
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            📍
+                            <span>
+                                Community Park
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="event-button"
+                        onclick="registerEvent('Community Clean-Up Drive')"
+                    >
+                        Join Event
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 2 -->
+
+            <article
+                class="event-card"
+                data-category="health"
+                data-title="health awareness camp"
+            >
+
+                <div class="event-image">
+                    🏥
+                </div>
+
+                <div class="event-body">
+
+                    <span class="event-tag">
+                        HEALTH
+                    </span>
+
+                    <h3>
+                        Free Health Awareness Camp
+                    </h3>
+
+                    <p class="event-description">
+                        A community health awareness program with
+                        basic health checks and awareness sessions.
+                    </p>
+
+                    <div class="event-details">
+
+                        <div class="event-detail">
+                            📅
+                            <span>
+                                03 October 2026
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            🕘
+                            <span>
+                                10:00 AM – 2:00 PM
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            📍
+                            <span>
+                                Community Hall
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="event-button"
+                        onclick="registerEvent('Free Health Awareness Camp')"
+                    >
+                        Register
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 3 -->
+
+            <article
+                class="event-card"
+                data-category="education"
+                data-title="digital literacy workshop"
+            >
+
+                <div class="event-image">
+                    💻
+                </div>
+
+                <div class="event-body">
+
+                    <span class="event-tag">
+                        EDUCATION
+                    </span>
+
+                    <h3>
+                        Digital Literacy Workshop
+                    </h3>
+
+                    <p class="event-description">
+                        Learn essential digital skills and discover
+                        useful online public services.
+                    </p>
+
+                    <div class="event-details">
+
+                        <div class="event-detail">
+                            📅
+                            <span>
+                                10 October 2026
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            🕘
+                            <span>
+                                11:00 AM – 1:00 PM
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            📍
+                            <span>
+                                Community Learning Center
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="event-button"
+                        onclick="registerEvent('Digital Literacy Workshop')"
+                    >
+                        Register
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 4 -->
+
+            <article
+                class="event-card"
+                data-category="community"
+                data-title="neighborhood meeting"
+            >
+
+                <div class="event-image">
+                    🏘️
+                </div>
+
+                <div class="event-body">
+
+                    <span class="event-tag">
+                        COMMUNITY
+                    </span>
+
+                    <h3>
+                        Neighborhood Community Meeting
+                    </h3>
+
+                    <p class="event-description">
+                        Discuss local concerns, upcoming projects
+                        and community improvement initiatives.
+                    </p>
+
+                    <div class="event-details">
+
+                        <div class="event-detail">
+                            📅
+                            <span>
+                                15 October 2026
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            🕘
+                            <span>
+                                5:00 PM – 7:00 PM
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            📍
+                            <span>
+                                Community Hall
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="event-button"
+                        onclick="registerEvent('Neighborhood Community Meeting')"
+                    >
+                        Join Meeting
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 5 -->
+
+            <article
+                class="event-card"
+                data-category="environment"
+                data-title="tree plantation program"
+            >
+
+                <div class="event-image">
+                    🌳
+                </div>
+
+                <div class="event-body">
+
+                    <span class="event-tag">
+                        ENVIRONMENT
+                    </span>
+
+                    <h3>
+                        Community Tree Plantation
+                    </h3>
+
+                    <p class="event-description">
+                        Participate in a local tree plantation
+                        initiative and contribute to greener public spaces.
+                    </p>
+
+                    <div class="event-details">
+
+                        <div class="event-detail">
+                            📅
+                            <span>
+                                22 October 2026
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            🕘
+                            <span>
+                                8:00 AM – 11:00 AM
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            📍
+                            <span>
+                                Green Community Park
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="event-button"
+                        onclick="registerEvent('Community Tree Plantation')"
+                    >
+                        Join Event
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EVENT 6 -->
+
+            <article
+                class="event-card"
+                data-category="government"
+                data-title="public service awareness program"
+            >
+
+                <div class="event-image">
+                    🏛️
+                </div>
+
+                <div class="event-body">
+
+                    <span class="event-tag">
+                        GOVERNMENT
+                    </span>
+
+                    <h3>
+                        Public Service Awareness Program
+                    </h3>
+
+                    <p class="event-description">
+                        Learn about available civic services,
+                        community facilities and public resources.
+                    </p>
+
+                    <div class="event-details">
+
+                        <div class="event-detail">
+                            📅
+                            <span>
+                                30 October 2026
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            🕘
+                            <span>
+                                10:00 AM – 1:00 PM
+                            </span>
+                        </div>
+
+                        <div class="event-detail">
+                            📍
+                            <span>
+                                Civic Service Center
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="event-button"
+                        onclick="registerEvent('Public Service Awareness Program')"
+                    >
+                        Learn More
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- NO RESULTS -->
+
+        <div
+            class="no-results"
+            id="noResults"
+        >
+
+            <div>
+                🔍
+            </div>
+
+            <strong>
+                No events found
+            </strong>
+
+            <p>
+                Try another search or category.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= ANNOUNCEMENTS ================= -->
+
+        <div class="announcements">
+
+
+            <!-- ANNOUNCEMENT PANEL -->
+
+            <section class="announcement-panel">
+
+                <div class="section-header">
+
+                    <h2>
+                        📢 Latest Announcements
+                    </h2>
+
+                    <span>
+                        4 New
+                    </span>
+
+                </div>
+
+
+                <div class="announcement-list">
+
+
+                    <div class="announcement">
+
+                        <div class="announcement-icon">
+                            💧
+                        </div>
+
+                        <div class="announcement-content">
+
+                            <h4>
+                                Scheduled Water Maintenance
+                            </h4>
+
+                            <p>
+                                Water supply may be temporarily
+                                affected during scheduled maintenance.
+                            </p>
+
+                            <div class="announcement-date">
+                                Posted 21 September 2026
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="announcement">
+
+                        <div class="announcement-icon">
+                            🚧
+                        </div>
+
+                        <div class="announcement-content">
+
+                            <h4>
+                                Road Maintenance Notice
+                            </h4>
+
+                            <p>
+                                Road maintenance work is scheduled
+                                in selected community areas.
+                            </p>
+
+                            <div class="announcement-date">
+                                Posted 20 September 2026
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="announcement">
+
+                        <div class="announcement-icon">
+                            🗑️
+                        </div>
+
+                        <div class="announcement-content">
+
+                            <h4>
+                                Revised Waste Collection Schedule
+                            </h4>
+
+                            <p>
+                                Residents are requested to follow
+                                the updated waste collection schedule.
+                            </p>
+
+                            <div class="announcement-date">
+                                Posted 18 September 2026
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="announcement">
+
+                        <div class="announcement-icon">
+                            🌱
+                        </div>
+
+                        <div class="announcement-content">
+
+                            <h4>
+                                Green Community Initiative
+                            </h4>
+
+                            <p>
+                                Residents can participate in upcoming
+                                environmental improvement activities.
+                            </p>
+
+                            <div class="announcement-date">
+                                Posted 16 September 2026
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- CALENDAR -->
+
+            <section class="calendar-panel">
+
+                <div class="calendar-header">
+
+                    <h3>
+                        📅 September 2026
+                    </h3>
+
+                    <span class="calendar-month">
+                        COMMUNITY EVENTS
+                    </span>
+
+                </div>
+
+
+                <div class="calendar-days">
+
+                    <div class="day-name">SUN</div>
+                    <div class="day-name">MON</div>
+                    <div class="day-name">TUE</div>
+                    <div class="day-name">WED</div>
+                    <div class="day-name">THU</div>
+                    <div class="day-name">FRI</div>
+                    <div class="day-name">SAT</div>
+
+
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+
+                    <div class="day">13</div>
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+
+                    <div class="day">20</div>
+                    <div class="day today">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+
+                    <div class="day">27</div>
+                    <div class="day event-day">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /*
+         * EVENT SEARCH
+         */
+
+        const searchInput =
+            document.getElementById("eventSearch");
+
+        const categoryFilter =
+            document.getElementById("categoryFilter");
+
+        const eventCards =
+            document.querySelectorAll(".event-card");
+
+        const noResults =
+            document.getElementById("noResults");
+
+
+        function filterEvents() {
+
+            const searchText =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+            const selectedCategory =
+                categoryFilter.value;
+
+            let visibleCount = 0;
+
+
+            eventCards.forEach(function(card) {
+
+                const title =
+                    card.dataset.title;
+
+                const category =
+                    card.dataset.category;
+
+
+                const matchesSearch =
+                    title.includes(searchText);
+
+                const matchesCategory =
+                    selectedCategory === "all" ||
+                    category === selectedCategory;
+
+
+                if (
+                    matchesSearch &&
+                    matchesCategory
+                ) {
+
+                    card.style.display = "block";
+
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            if (visibleCount === 0) {
+
+                noResults.style.display = "block";
+
+            } else {
+
+                noResults.style.display = "none";
+
+            }
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            filterEvents
+        );
+
+
+        categoryFilter.addEventListener(
+            "change",
+            filterEvents
+        );
+
+
+        /*
+         * DEMO EVENT REGISTRATION
+         */
+
+        function registerEvent(eventName) {
+
+            alert(
+                "You selected:\n\n" +
+                eventName +
+                "\n\n" +
+                "Event registration will be connected to the backend later."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+</html>
