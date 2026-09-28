@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report a Problem | Smart Community 360°</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f6;
+            color: #1d2b24;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            height: 72px;
+            background: #123c2a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: #35b87f;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #35b87f;
+            border-color: #35b87f;
+        }
+
+        /* MAIN */
+
+        .main-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #718078;
+            line-height: 1.6;
+        }
+
+        /* FORM CARD */
+
+        .form-card {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            border: 1px solid #e8efeb;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-heading {
+            font-size: 18px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e7eeea;
+        }
+
+        /* GRID */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #d94b4b;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d7e2dc;
+            border-radius: 9px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            background: #fbfdfc;
+            transition: 0.25s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #35b87f;
+            box-shadow: 0 0 0 3px rgba(53,184,127,0.12);
+            background: white;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .helper-text {
+            color: #849089;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        /* LOCATION */
+
+        .location-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .location-row input {
+            flex: 1;
+        }
+
+        .location-btn {
+            border: none;
+            background: #e4f7ee;
+            color: #16814f;
+            padding: 0 17px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .location-btn:hover {
+            background: #d4f0e2;
+        }
+
+        /* PRIORITY */
+
+        .priority-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .priority-option {
+            position: relative;
+        }
+
+        .priority-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .priority-option label {
+            display: block;
+            padding: 10px 18px;
+            border: 1px solid #d7e2dc;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+            transition: 0.25s;
+        }
+
+        .priority-option input:checked + label {
+            background: #e4f7ee;
+            border-color: #35b87f;
+            color: #16814f;
+        }
+
+        /* UPLOAD */
+
+        .upload-box {
+            border: 2px dashed #cbd9d2;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            background: #fafcfb;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover {
+            border-color: #35b87f;
+            background: #f3fbf7;
+        }
+
+        .upload-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .upload-box p {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .upload-box small {
+            color: #849089;
+        }
+
+        #photo {
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #16814f;
+        }
+
+        /* SUBMIT AREA */
+
+        .form-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 25px;
+            border-top: 1px solid #e7eeea;
+        }
+
+        .privacy-note {
+            color: #7b8881;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            border: none;
+            background: #219b68;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .submit-btn:hover {
+            background: #167b51;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(33,155,104,0.25);
+        }
+
+        /* SUCCESS */
+
+        .success-message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 18px;
+            background: #e2f8eb;
+            border: 1px solid #a8dfc0;
+            border-radius: 12px;
+            color: #176b45;
+        }
+
+        .success-message h3 {
+            margin-bottom: 5px;
+        }
+
+        .report-id {
+            font-weight: bold;
+            color: #0d8050;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .back-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .main-container {
+                margin: 25px auto;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .location-row {
+                flex-direction: column;
+            }
+
+            .location-btn {
+                padding: 12px;
+            }
+
+            .form-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">🌱</div>
+            <span>Smart Community 360°</span>
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-container">
+
+        <div class="page-heading">
+
+            <h1>Report a Community Problem</h1>
+
+            <p>
+                Help improve your community by reporting problems
+                that need attention. Your report will be reviewed
+                by the concerned department.
+            </p>
+
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+
+        <div class="success-message" id="successMessage">
+
+            <h3>✅ Report Submitted Successfully!</h3>
+
+            <p>
+                Your report has been registered with Report ID:
+                <span class="report-id" id="reportId"></span>
+            </p>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form class="form-card" id="reportForm">
+
+
+            <!-- PROBLEM DETAILS -->
+
+            <div class="form-section">
+
+                <h2 class="section-heading">
+                    📋 Problem Details
+                </h2>
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label for="title">
+                            Problem Title <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            placeholder="Example: Streetlight not working"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category <span class="required">*</span>
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select problem category
+                            </option>
+
+                            <option value="streetlight">
+                                💡 Streetlight
+                            </option>
+
+                            <option value="water">
+                                🚰 Water & Drainage
+                            </option>
+
+                            <option value="waste">
+                                🗑️ Waste Management
+                            </option>
+
+                            <option value="road">
+                                🛣️ Roads & Infrastructure
+                            </option>
+
+                            <option value="traffic">
+                                🚦 Traffic & Signals
+                            </option>
+
+                            <option value="environment">
+                                🌳 Environment
+                            </option>
+
+                            <option value="public">
+                                🏢 Public Facilities
+                            </option>
+
+                            <option value="other">
+                                📌 Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="priority">
+                            Priority <span class="required">*</span>
+                        </label>
+
+                        <select id="priority" required>
+
+                            <option value="">
+                                Select priority
+                            </option>
+
+                            <option value="low">
+                                Low
+                            </option>
+
+                            <option value="medium">
+                                Medium
+                            </option>
+
+                            <option value="high">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="description">
+                            Problem Description
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Describe the problem clearly. Mention important details that can help the concerned department understand the issue."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="form-section">
+
+                <h2 class="section-heading">
+                    📍 Problem Location
+                </h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label for="location">
+                            Location <span class="required">*</span>
+                        </label>
+
+                        <div class="location-row">
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="Enter the problem location"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="location-btn"
+                                id="locationBtn"
+                            >
+                                📍 Use My Location
+                            </button>
+
+                        </div>
+
+                        <span class="helper-text">
+                            Enter the street, area, landmark or community
+                            where the problem exists.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO -->
+
+            <div class="form-section">
+
+                <h2 class="section-heading">
+                    📷 Add Evidence
+                </h2>
+
+                <div
+                    class="upload-box"
+                    id="uploadBox"
+                >
+
+                    <div class="upload-icon">
+                        📷
+                    </div>
+
+                    <p>
+                        <strong>Upload a photo</strong>
+                    </p>
+
+                    <small>
+                        Click here to select an image
+                    </small>
+
+                    <input
+                        type="file"
+                        id="photo"
+                        accept="image/*"
+                    >
+
+                    <div
+                        class="file-name"
+                        id="fileName"
+                    ></div>
+
+                </div>
+
+                <p class="helper-text">
+                    A photo can help the concerned department
+                    understand and verify the reported problem.
+                </p>
+
+            </div>
+
+
+            <!-- PRIORITY -->
+
+            <div class="form-section">
+
+                <h2 class="section-heading">
+                    ⚠️ Urgency Level
+                </h2>
+
+                <div class="priority-options">
+
+                    <div class="priority-option">
+
+                        <input
+                            type="radio"
+                            id="low"
+                            name="urgency"
+                            value="low"
+                            checked
+                        >
+
+                        <label for="low">
+                            Low
+                        </label>
+
+                    </div>
+
+
+                    <div class="priority-option">
+
+                        <input
+                            type="radio"
+                            id="medium"
+                            name="urgency"
+                            value="medium"
+                        >
+
+                        <label for="medium">
+                            Medium
+                        </label>
+
+                    </div>
+
+
+                    <div class="priority-option">
+
+                        <input
+                            type="radio"
+                            id="high"
+                            name="urgency"
+                            value="high"
+                        >
+
+                        <label for="high">
+                            High
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="form-footer">
+
+                <p class="privacy-note">
+                    🔒 Your submitted information will be used only
+                    for handling and resolving the reported community issue.
+                </p>
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Submit Report →
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    const reportForm = document.getElementById("reportForm");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+    const reportId =
+        document.getElementById("reportId");
+
+
+    /* PHOTO UPLOAD */
+
+    const uploadBox =
+        document.getElementById("uploadBox");
+
+    const photo =
+        document.getElementById("photo");
+
+    const fileName =
+        document.getElementById("fileName");
+
+
+    uploadBox.addEventListener("click", function () {
+
+        photo.click();
+
+    });
+
+
+    photo.addEventListener("change", function () {
+
+        if (photo.files.length > 0) {
+
+            fileName.textContent =
+                "Selected: " + photo.files[0].name;
+
+        }
+
+    });
+
+
+    /* LOCATION BUTTON */
+
+    const locationBtn =
+        document.getElementById("locationBtn");
+
+    const locationInput =
+        document.getElementById("location");
+
+
+    locationBtn.addEventListener("click", function () {
+
+        if (!navigator.geolocation) {
+
+            alert("Location services are not supported by your browser.");
+
+            return;
+        }
+
+        locationBtn.textContent = "Getting location...";
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            function (position) {
+
+                const latitude =
+                    position.coords.latitude.toFixed(6);
+
+                const longitude =
+                    position.coords.longitude.toFixed(6);
+
+                locationInput.value =
+                    `Latitude: ${latitude}, Longitude: ${longitude}`;
+
+                locationBtn.textContent =
+                    "📍 Location Added";
+
+            },
+
+            function () {
+
+                alert(
+                    "Unable to get your location. Please enter the location manually."
+                );
+
+                locationBtn.textContent =
+                    "📍 Use My Location";
+
+            }
+
+        );
+
+    });
+
+
+    /* FORM SUBMISSION */
+
+    reportForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        const generatedId =
+            "SC360-" +
+            Math.floor(100000 + Math.random() * 900000);
+
+
+        reportId.textContent = generatedId;
+
+        successMessage.style.display = "block";
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        reportForm.reset();
+
+        fileName.textContent = "";
+
+
+        console.log(
+            "Report submitted:",
+            generatedId
+        );
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Community Map | Smart Community 360°</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Leaflet Map CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f6;
+            color: #1d2b24;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            height: 72px;
+            background: #123c2a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: #35b87f;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #35b87f;
+            border-color: #35b87f;
+        }
+
+        /* MAIN */
+
+        .main-container {
+            max-width: 1250px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #718078;
+            line-height: 1.6;
+        }
+
+        /* MAP LAYOUT */
+
+        .map-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        /* FILTER PANEL */
+
+        .filter-panel {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid #e5ede8;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+            height: fit-content;
+        }
+
+        .filter-panel h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .filter-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #75827c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 25px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .filter-option:hover {
+            background: #f1f8f4;
+        }
+
+        .filter-option input {
+            accent-color: #219b68;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-active {
+            background: #e8a62a;
+        }
+
+        .dot-resolved {
+            background: #35b87f;
+        }
+
+        .dot-high {
+            background: #df5656;
+        }
+
+        .map-location-btn {
+            width: 100%;
+            border: none;
+            background: #219b68;
+            color: white;
+            padding: 12px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .map-location-btn:hover {
+            background: #167b51;
+        }
+
+        /* MAP */
+
+        .map-card {
+            background: white;
+            padding: 12px;
+            border-radius: 16px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+            border: 1px solid #e5ede8;
+        }
+
+        #communityMap {
+            height: 560px;
+            width: 100%;
+            border-radius: 11px;
+            overflow: hidden;
+        }
+
+        /* MAP INFO */
+
+        .map-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 8px 5px;
+            gap: 15px;
+        }
+
+        .map-info p {
+            color: #718078;
+            font-size: 13px;
+        }
+
+        .map-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #16814f;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: #35b87f;
+            border-radius: 50%;
+        }
+
+        /* SUMMARY */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid #e5ede8;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .summary-card .icon {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card h3 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .summary-card p {
+            color: #718078;
+            font-size: 12px;
+        }
+
+        /* POPUP */
+
+        .popup-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .popup-category {
+            color: #16814f;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .popup-status {
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .map-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-panel {
+                order: 2;
+            }
+
+            .map-card {
+                order: 1;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .main-container {
+                margin: 25px auto;
+                padding: 0 12px;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+            #communityMap {
+                height: 450px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .summary-card {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🌱
+            </div>
+
+            <span>
+                Smart Community 360°
+            </span>
+
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-container">
+
+        <div class="page-heading">
+
+            <h1>Community Map</h1>
+
+            <p>
+                Explore reported community problems and view their
+                locations on the map.
+            </p>
+
+        </div>
+
+
+        <div class="map-layout">
+
+
+            <!-- FILTER PANEL -->
+
+            <aside class="filter-panel">
+
+                <h2>🗺️ Map Filters</h2>
+
+
+                <div class="filter-title">
+                    Issue Status
+                </div>
+
+                <div class="filter-options">
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            id="activeFilter"
+                            checked
+                        >
+
+                        <span class="legend-dot dot-active"></span>
+
+                        <span>
+                            Active Issues
+                        </span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            id="resolvedFilter"
+                            checked
+                        >
+
+                        <span class="legend-dot dot-resolved"></span>
+
+                        <span>
+                            Resolved Issues
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="filter-title">
+                    Priority
+                </div>
+
+                <div class="filter-options">
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            id="highFilter"
+                            checked
+                        >
+
+                        <span class="legend-dot dot-high"></span>
+
+                        <span>
+                            High Priority
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="map-location-btn"
+                    id="myLocationBtn"
+                >
+                    📍 Find My Location
+                </button>
+
+            </aside>
+
+
+            <!-- MAP -->
+
+            <section class="map-card">
+
+                <div id="communityMap"></div>
+
+                <div class="map-info">
+
+                    <p>
+                        📍 Showing community reports in the selected area
+                    </p>
+
+                    <div class="map-status">
+
+                        <span class="online-dot"></span>
+
+                        Map Active
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="icon">
+                    📋
+                </div>
+
+                <h3 id="totalIssues">
+                    24
+                </h3>
+
+                <p>
+                    Total Reports
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="icon">
+                    🟡
+                </div>
+
+                <h3>
+                    06
+                </h3>
+
+                <p>
+                    Active Issues
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="icon">
+                    🟢
+                </div>
+
+                <h3>
+                    18
+                </h3>
+
+                <p>
+                    Resolved Issues
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    03
+                </h3>
+
+                <p>
+                    High Priority
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- LEAFLET MAP JS -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <script>
+
+        /*
+         * Initial map location.
+         *
+         * These are demonstration coordinates.
+         * Later the backend can provide real community coordinates.
+         */
+
+        const map = L.map("communityMap").setView(
+            [17.6868, 83.2185],
+            13
+        );
+
+
+        /*
+         * OpenStreetMap tiles
+         */
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19,
+                attribution:
+                    '&copy; OpenStreetMap contributors'
+            }
+        ).addTo(map);
+
+
+        /*
+         * Create marker icons using colored circles.
+         */
+
+        function createIcon(color) {
+
+            return L.divIcon({
+
+                className: "custom-marker",
+
+                html: `
+                    <div style="
+                        width: 18px;
+                        height: 18px;
+                        background: ${color};
+                        border: 3px solid white;
+                        border-radius: 50%;
+                        box-shadow: 0 2px 7px rgba(0,0,0,0.35);
+                    "></div>
+                `,
+
+                iconSize: [18, 18],
+
+                iconAnchor: [9, 9]
+
+            });
+
+        }
+
+
+        /*
+         * Demonstration community reports.
+         */
+
+        const issues = [
+
+            {
+                lat: 17.6868,
+                lng: 83.2185,
+                title: "Streetlight Not Working",
+                category: "💡 Streetlight",
+                status: "In Progress",
+                type: "active",
+                priority: "high"
+            },
+
+            {
+                lat: 17.6920,
+                lng: 83.2140,
+                title: "Water Leakage",
+                category: "🚰 Water & Drainage",
+                status: "Resolved",
+                type: "resolved",
+                priority: "medium"
+            },
+
+            {
+                lat: 17.6808,
+                lng: 83.2230,
+                title: "Garbage Collection Issue",
+                category: "🗑️ Waste Management",
+                status: "Submitted",
+                type: "active",
+                priority: "medium"
+            },
+
+            {
+                lat: 17.6950,
+                lng: 83.2260,
+                title: "Road Damage",
+                category: "🛣️ Roads & Infrastructure",
+                status: "In Progress",
+                type: "active",
+                priority: "high"
+            },
+
+            {
+                lat: 17.6780,
+                lng: 83.2120,
+                title: "Public Park Issue",
+                category: "🌳 Environment",
+                status: "Resolved",
+                type: "resolved",
+                priority: "low"
+            }
+
+        ];
+
+
+        const markers = [];
+
+
+        /*
+         * Add issues to map.
+         */
+
+        issues.forEach(function(issue) {
+
+            let markerColor = "#e8a62a";
+
+            if (issue.type === "resolved") {
+                markerColor = "#35b87f";
+            }
+
+            if (issue.priority === "high") {
+                markerColor = "#df5656";
+            }
+
+
+            const marker = L.marker(
+                [issue.lat, issue.lng],
+                {
+                    icon: createIcon(markerColor)
+                }
+            );
+
+
+            marker.bindPopup(`
+
+                <div>
+
+                    <div class="popup-title">
+                        ${issue.title}
+                    </div>
+
+                    <div class="popup-category">
+                        ${issue.category}
+                    </div>
+
+                    <div class="popup-status">
+                        Status: <strong>${issue.status}</strong>
+                    </div>
+
+                    <div class="popup-status">
+                        Priority: <strong>${issue.priority}</strong>
+                    </div>
+
+                </div>
+
+            `);
+
+
+            marker.addTo(map);
+
+
+            markers.push({
+                marker: marker,
+                issue: issue
+            });
+
+        });
+
+
+        /*
+         * Filter function.
+         */
+
+        function updateMarkers() {
+
+            const active =
+                document.getElementById("activeFilter").checked;
+
+            const resolved =
+                document.getElementById("resolvedFilter").checked;
+
+            const high =
+                document.getElementById("highFilter").checked;
+
+
+            markers.forEach(function(item) {
+
+                const issue = item.issue;
+
+                let show = true;
+
+
+                if (
+                    issue.type === "active" &&
+                    !active
+                ) {
+                    show = false;
+                }
+
+
+                if (
+                    issue.type === "resolved" &&
+                    !resolved
+                ) {
+                    show = false;
+                }
+
+
+                if (
+                    issue.priority === "high" &&
+                    !high
+                ) {
+                    show = false;
+                }
+
+
+                if (show) {
+
+                    item.marker.addTo(map);
+
+                } else {
+
+                    map.removeLayer(item.marker);
+
+                }
+
+            });
+
+        }
+
+
+        document
+            .getElementById("activeFilter")
+            .addEventListener(
+                "change",
+                updateMarkers
+            );
+
+
+        document
+            .getElementById("resolvedFilter")
+            .addEventListener(
+                "change",
+                updateMarkers
+            );
+
+
+        document
+            .getElementById("highFilter")
+            .addEventListener(
+                "change",
+                updateMarkers
+            );
+
+
+        /*
+         * Find user's current location.
+         */
+
+        document
+            .getElementById("myLocationBtn")
+            .addEventListener(
+                "click",
+                function() {
+
+                    const button = this;
+
+                    if (!navigator.geolocation) {
+
+                        alert(
+                            "Your browser does not support location services."
+                        );
+
+                        return;
+                    }
+
+
+                    button.textContent =
+                        "📍 Finding location...";
+
+
+                    navigator.geolocation.getCurrentPosition(
+
+                        function(position) {
+
+                            const lat =
+                                position.coords.latitude;
+
+                            const lng =
+                                position.coords.longitude;
+
+
+                            map.setView(
+                                [lat, lng],
+                                16
+                            );
+
+
+                            L.marker(
+                                [lat, lng],
+                                {
+                                    icon: createIcon("#2779e6")
+                                }
+                            )
+                            .addTo(map)
+                            .bindPopup(
+                                "<strong>📍 You are here</strong>"
+                            )
+                            .openPopup();
+
+
+                            button.textContent =
+                                "📍 Location Found";
+
+                        },
+
+
+                        function() {
+
+                            alert(
+                                "Unable to access your location. You can continue using the map."
+                            );
+
+                            button.textContent =
+                                "📍 Find My Location";
+
+                        }
+
+                    );
+
+                }
+            );
+
+    </script>
+
+</body>
+</html>
