@@ -3,7 +3,7 @@
 // AUTHENTICATION GUARD
 // =====================================================
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://smart-community-360-1.onrender.com";
 
 // =====================================================
 // CHECK USER AUTHENTICATION
@@ -73,6 +73,27 @@ async function checkAuthentication() {
             "smartCommunityUser",
             JSON.stringify(data.user)
         );
+
+        const userName = document.getElementById("userName");
+        const userEmail = document.getElementById("userEmail");
+        const userCity = document.getElementById("userCity");
+        const userPoints = document.getElementById("userPoints");
+
+        if (userName) {
+            userName.textContent = data.user.name;
+        }
+
+        if (userEmail) {
+            userEmail.textContent = data.user.email;
+        }
+
+        if (userCity) {
+            userCity.textContent = data.user.city || "Not specified";
+        }
+
+        if (userPoints) {
+            userPoints.textContent = data.user.points ?? 0;
+        }
 
     } catch (error) {
 
