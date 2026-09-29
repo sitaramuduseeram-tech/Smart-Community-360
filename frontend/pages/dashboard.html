@@ -452,6 +452,93 @@
                 padding: 15px;
             }
         }
+
+        /* ==========================================
+           DARK MODE
+        ========================================== */
+
+        body.dark-mode {
+            background: #121c17;
+            color: #e8f2ed;
+        }
+
+        body.dark-mode .welcome p {
+            color: #a9bbb2;
+        }
+
+        body.dark-mode .icon-btn {
+            background: #1b2922;
+            color: #e8f2ed;
+        }
+
+        body.dark-mode .profile {
+            background: #1b2922;
+            color: #e8f2ed;
+        }
+
+        body.dark-mode .stat-card,
+        body.dark-mode .quick-card,
+        body.dark-mode .panel {
+            background: #1b2922;
+            color: #e8f2ed;
+            border-color: #2b3d34;
+        }
+
+        body.dark-mode .stat-card p,
+        body.dark-mode .quick-card p,
+        body.dark-mode .issue-info p {
+            color: #a9bbb2;
+        }
+
+        body.dark-mode .quick-card {
+            color: #e8f2ed;
+        }
+
+        body.dark-mode .section-title a {
+            color: #5ed39b;
+        }
+
+        body.dark-mode .issue {
+            border-color: #2b3d34;
+        }
+
+        body.dark-mode .issue-icon,
+        body.dark-mode .stat-icon {
+            background: #254336;
+        }
+
+        body.dark-mode .progress-bar {
+            background: #2b3d34;
+        }
+
+
+        /* Notification panel */
+
+        body.dark-mode #notificationPanel {
+            background: #1b2922;
+            color: #e8f2ed;
+            border-color: #2b3d34;
+        }
+
+        body.dark-mode .notification-header {
+            border-color: #2b3d34;
+        }
+
+        body.dark-mode .notification-item {
+            border-color: #2b3d34;
+        }
+
+        body.dark-mode .notification-content p {
+            color: #a9bbb2;
+        }
+
+        body.dark-mode .notification-icon {
+            background: #254336;
+        }
+
+        body.dark-mode #closeNotifications {
+            color: #a9bbb2;
+        }
     </style>
 </head>
 
@@ -480,28 +567,28 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="report.html">
                     <span>📍</span>
                     <span>Report Problem</span>
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="track.html">
                     <span>🔎</span>
                     <span>Track Issue</span>
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="map.html">
                     <span>🗺️</span>
                     <span>Community Map</span>
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="events.html">
                     <span>📅</span>
                     <span>Events</span>
                 </a>
@@ -514,14 +601,14 @@
         <ul class="nav-menu">
 
             <li>
-                <a href="#">
+                <a href="profile.html">
                     <span>👤</span>
                     <span>My Profile</span>
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="settings.html">
                     <span>⚙️</span>
                     <span>Settings</span>
                 </a>
@@ -561,10 +648,12 @@
 
                 <button class="icon-btn">🌙</button>
 
-                <div class="profile">
-                    <img src="https://i.pravatar.cc/100?img=12" alt="Profile">
-                    <span>Ramu</span>
-                </div>
+                <a href="profile.html" class="profile" id="dashboardProfile">
+                    <img id="dashboardProfileImage"
+                         src="https://i.pravatar.cc/100?img=12"
+                         alt="Profile">
+                    <span id="dashboardProfileName">User</span>
+                </a>
 
             </div>
 
@@ -647,14 +736,14 @@
 
             <h2>Quick Actions</h2>
 
-            <a href="#">View all →</a>
+            <a href="quick-actions.html">View all →</a>
 
         </div>
 
 
         <div class="quick-grid">
 
-            <a href="#" class="quick-card">
+            <a href="report.html" class="quick-card">
 
                 <div class="quick-icon">📍</div>
 
@@ -665,7 +754,7 @@
             </a>
 
 
-            <a href="#" class="quick-card">
+            <a href="track.html" class="quick-card">
 
                 <div class="quick-icon">🔎</div>
 
@@ -676,7 +765,7 @@
             </a>
 
 
-            <a href="#" class="quick-card">
+            <a href="map.html" class="quick-card">
 
                 <div class="quick-icon">🗺️</div>
 
@@ -687,7 +776,7 @@
             </a>
 
 
-            <a href="#" class="quick-card">
+            <a href="events.html" class="quick-card">
 
                 <div class="quick-icon">📅</div>
 
@@ -713,7 +802,7 @@
 
                     <h2>Recent Community Issues</h2>
 
-                    <a href="#">View all →</a>
+                    <a href="recent-issues.html">View all →</a>
 
                 </div>
 
@@ -818,27 +907,489 @@
 
 <script>
 
-    // Simple notification demo
+    // ==========================================
+    // NOTIFICATION PANEL
+    // ==========================================
 
-    document.querySelector(".icon-btn").addEventListener("click", function () {
-
-        alert("You have 3 new community notifications.");
-
-    });
+    const notificationButton =
+        document.querySelectorAll(".icon-btn")[0];
 
 
-    // Dark mode demo
+    // Create notification panel
 
-    const buttons = document.querySelectorAll(".icon-btn");
+    const notificationPanel =
+        document.createElement("div");
 
-    buttons[1].addEventListener("click", function () {
+    notificationPanel.id =
+        "notificationPanel";
 
-        document.body.style.background =
-            document.body.style.background === "rgb(18, 28, 23)"
-            ? "#f4f8f6"
-            : "#121c17";
 
-    });
+    notificationPanel.innerHTML = `
+        <div class="notification-header">
+            <strong>Notifications</strong>
+            <button id="closeNotifications">×</button>
+        </div>
+
+        <div id="notificationList">
+        </div>
+    `;
+
+
+    document.body.appendChild(
+        notificationPanel
+    );
+
+
+    // ==========================================
+    // NOTIFICATION STYLES
+    // ==========================================
+
+    const notificationStyle =
+        document.createElement("style");
+
+
+    notificationStyle.textContent = `
+
+        #notificationPanel {
+
+            position: fixed;
+
+            top: 82px;
+
+            right: 35px;
+
+            width: 350px;
+
+            max-width: calc(100vw - 30px);
+
+            background: white;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.18);
+
+            border: 1px solid #edf2ef;
+
+            z-index: 9999;
+
+            display: none;
+
+            overflow: hidden;
+
+        }
+
+
+        .notification-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px;
+
+            border-bottom: 1px solid #edf2ef;
+
+            font-size: 16px;
+
+        }
+
+
+        #closeNotifications {
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 24px;
+
+            cursor: pointer;
+
+            color: #718078;
+
+        }
+
+
+        .notification-item {
+
+            padding: 15px 18px;
+
+            border-bottom: 1px solid #edf2ef;
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: flex-start;
+
+        }
+
+
+        .notification-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .notification-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 10px;
+
+            background: #e4f7ee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .notification-content h4 {
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .notification-content p {
+
+            font-size: 12px;
+
+            color: #718078;
+
+            line-height: 1.5;
+
+        }
+
+
+        .notification-empty {
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            color: #718078;
+
+            font-size: 13px;
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            #notificationPanel {
+
+                right: 15px;
+
+                top: 70px;
+
+                width: calc(100vw - 30px);
+
+            }
+
+        }
+
+    `;
+
+
+    document.head.appendChild(
+        notificationStyle
+    );
+
+
+    // ==========================================
+    // LOAD NOTIFICATIONS
+    // ==========================================
+
+    function loadNotifications() {
+
+        const notificationList =
+            document.getElementById(
+                "notificationList"
+            );
+
+
+        const reports =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartCommunityReports"
+                )
+            ) || [];
+
+
+        const registeredEvents =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartCommunityRegisteredEvents"
+                )
+            ) || [];
+
+
+        let notifications = [];
+
+
+        // Report notifications
+
+        if (reports.length > 0) {
+
+            const latestReport =
+                reports[0];
+
+
+            notifications.push({
+
+                icon: "📋",
+
+                title: "Report Submitted",
+
+                message:
+                    `${latestReport.title} • ${latestReport.status}`
+
+            });
+
+        }
+
+
+        // Event notifications
+
+        if (registeredEvents.length > 0) {
+
+            notifications.push({
+
+                icon: "📅",
+
+                title: "Event Registration",
+
+                message:
+                    `You have registered for ${registeredEvents.length} community event${registeredEvents.length > 1 ? "s" : ""}.`
+
+            });
+
+        }
+
+
+        // General notification
+
+        notifications.push({
+
+            icon: "🌱",
+
+            title: "Community Update",
+
+            message:
+                "Thank you for contributing to a smarter community."
+
+        });
+
+
+        // Display
+
+        notificationList.innerHTML = "";
+
+
+        notifications.forEach(
+            function(notification) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "notification-item";
+
+
+                item.innerHTML = `
+
+                    <div class="notification-icon">
+                        ${notification.icon}
+                    </div>
+
+                    <div class="notification-content">
+
+                        <h4>
+                            ${notification.title}
+                        </h4>
+
+                        <p>
+                            ${notification.message}
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                notificationList.appendChild(
+                    item
+                );
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // OPEN NOTIFICATIONS
+    // ==========================================
+
+    notificationButton.addEventListener(
+        "click",
+        function() {
+
+            loadNotifications();
+
+
+            notificationPanel.style.display =
+                notificationPanel.style.display === "block"
+                    ? "none"
+                    : "block";
+
+        }
+    );
+
+
+    // ==========================================
+    // CLOSE BUTTON
+    // ==========================================
+
+    document
+        .getElementById("closeNotifications")
+        .addEventListener(
+            "click",
+            function() {
+
+                notificationPanel.style.display =
+                    "none";
+
+            }
+        );
+
+
+    // ==========================================
+    // CLOSE WHEN CLICKING OUTSIDE
+    // ==========================================
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                !notificationPanel.contains(event.target) &&
+                !notificationButton.contains(event.target)
+            ) {
+
+                notificationPanel.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // DARK MODE
+    // ==========================================
+
+    const darkModeButton =
+        document.querySelectorAll(".icon-btn")[1];
+
+
+    const savedDarkMode =
+        localStorage.getItem(
+            "smartCommunityDarkMode"
+        );
+
+
+    if (savedDarkMode === "true") {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+    }
+
+
+    darkModeButton.addEventListener(
+        "click",
+        function() {
+
+            document.body.classList.toggle(
+                "dark-mode"
+            );
+
+
+            const enabled =
+                document.body.classList.contains(
+                    "dark-mode"
+                );
+
+
+            localStorage.setItem(
+                "smartCommunityDarkMode",
+                enabled
+            );
+
+        }
+    );
+
+
+    // ==========================================
+    // DYNAMIC USER PROFILE
+    // ==========================================
+
+    function loadDashboardProfile() {
+        const savedUser = localStorage.getItem("smartCommunityUser");
+
+        if (!savedUser) {
+            return;
+        }
+
+        try {
+            const user = JSON.parse(savedUser);
+
+            const profileImage = document.getElementById("dashboardProfileImage");
+            const profileName = document.getElementById("dashboardProfileName");
+
+            // Show user's name
+            if (profileName) {
+                profileName.textContent = user.name || "User";
+            }
+
+            // Show user's profile picture
+            if (profileImage && user.profileImage) {
+                profileImage.src = user.profileImage;
+            }
+
+            // If profile image fails, use default avatar
+            if (profileImage) {
+                profileImage.onerror = function () {
+                    this.src = "https://i.pravatar.cc/100?img=12";
+                };
+            }
+
+        } catch (error) {
+            console.error("Failed to load dashboard profile:", error);
+        }
+    }
+
+    loadDashboardProfile();
 
 </script>
 <script src="../js/auth.js"></script>
