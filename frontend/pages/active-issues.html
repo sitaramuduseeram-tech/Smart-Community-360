@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Active Issues | Smart Community 360°</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .brand-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.35);
+            padding: 10px 17px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-1px);
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 35px auto 60px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #687386;
+            line-height: 1.6;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(30, 55, 90, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .summary-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .summary-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: #fff3df;
+            color: #d97706;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .summary-left h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .summary-left p {
+            color: #7a8494;
+            font-size: 14px;
+        }
+
+        .count {
+            font-size: 34px;
+            font-weight: 800;
+            color: #d97706;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 18px 16px 48px;
+            border: 1px solid #dbe2ec;
+            border-radius: 14px;
+            background: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 5px 18px rgba(30,55,90,0.05);
+        }
+
+        .search-box input:focus {
+            border-color: #0b5ed7;
+            box-shadow: 0 0 0 4px rgba(11,94,215,0.08);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7c8798;
+            font-size: 18px;
+        }
+
+        /* ================= FILTER ================= */
+
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            border: 1px solid #dbe2ec;
+            background: white;
+            color: #566174;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: #0b5ed7;
+            color: #0b5ed7;
+        }
+
+        .filter-btn.active {
+            background: #0b5ed7;
+            color: white;
+            border-color: #0b5ed7;
+        }
+
+        /* ================= REPORTS ================= */
+
+        .reports-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 18px;
+            padding: 23px;
+            box-shadow: 0 7px 25px rgba(30,55,90,0.07);
+            border: 1px solid #edf0f5;
+            transition: 0.3s;
+        }
+
+        .report-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(30,55,90,0.11);
+        }
+
+        .report-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .report-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #172033;
+            margin-bottom: 7px;
+        }
+
+        .report-id {
+            font-size: 12px;
+            color: #7c8798;
+        }
+
+        /* ================= STATUS ================= */
+
+        .status {
+            padding: 7px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-submitted {
+            background: #e8f1ff;
+            color: #1769d1;
+        }
+
+        .status-progress {
+            background: #fff3df;
+            color: #d97706;
+        }
+
+        .status-pending {
+            background: #f1eaff;
+            color: #7546c9;
+        }
+
+        .status-default {
+            background: #eef1f5;
+            color: #606b7a;
+        }
+
+        .description {
+            color: #626d7d;
+            font-size: 14px;
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        /* ================= DETAILS ================= */
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .detail {
+            background: #f7f9fc;
+            padding: 13px;
+            border-radius: 11px;
+        }
+
+        .detail-label {
+            display: block;
+            color: #8993a3;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: #263246;
+            word-break: break-word;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty-state {
+            background: white;
+            border-radius: 18px;
+            padding: 60px 25px;
+            text-align: center;
+            box-shadow: 0 7px 25px rgba(30,55,90,0.07);
+        }
+
+        .empty-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: #788394;
+            margin-bottom: 22px;
+        }
+
+        .report-btn {
+            display: inline-block;
+            background: #0b5ed7;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .report-btn:hover {
+            background: #084298;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            color: #8a94a4;
+            font-size: 13px;
+            margin-top: 35px;
+        }
+
+        /* ================= DARK MODE ================= */
+
+        body.dark {
+            background: #10151f;
+            color: #edf2f7;
+        }
+
+        body.dark .summary-card,
+        body.dark .report-card,
+        body.dark .empty-state,
+        body.dark .search-box input,
+        body.dark .filter-btn {
+            background: #18202d;
+            border-color: #273244;
+        }
+
+        body.dark .page-heading p,
+        body.dark .summary-left p,
+        body.dark .description,
+        body.dark .report-id,
+        body.dark .footer {
+            color: #aab5c5;
+        }
+
+        body.dark .report-title,
+        body.dark .summary-left h3 {
+            color: #f2f5f9;
+        }
+
+        body.dark .detail {
+            background: #222c3b;
+        }
+
+        body.dark .detail-label {
+            color: #9ca8ba;
+        }
+
+        body.dark .detail-value {
+            color: #edf2f7;
+        }
+
+        body.dark .search-box input {
+            color: white;
+        }
+
+        body.dark .filter-btn {
+            color: #c7d0dd;
+        }
+
+        body.dark .filter-btn:hover {
+            color: #6ea8ff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .header {
+                padding: 15px 18px;
+            }
+
+            .brand-text h1 {
+                font-size: 17px;
+            }
+
+            .brand-text p {
+                display: none;
+            }
+
+            .back-btn {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .container {
+                width: 94%;
+                margin-top: 25px;
+            }
+
+            .page-heading h2 {
+                font-size: 25px;
+            }
+
+            .summary-card {
+                padding: 20px;
+            }
+
+            .details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .summary-card {
+                align-items: flex-start;
+            }
+
+            .summary-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+
+            .summary-left {
+                gap: 12px;
+            }
+
+            .count {
+                font-size: 28px;
+            }
+
+            .report-top {
+                flex-direction: column;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .report-card {
+                padding: 18px;
+            }
+
+            .filter-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🏙️
+            </div>
+
+            <div class="brand-text">
+                <h1>Smart Community 360°</h1>
+                <p>Community Management Platform</p>
+            </div>
+
+        </div>
+
+        <a href="./dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <section class="page-heading">
+
+            <h2>Active Issues</h2>
+
+            <p>
+                Track the community issues that are currently
+                submitted, pending, or being worked on.
+            </p>
+
+        </section>
+
+
+        <!-- ================= SUMMARY ================= -->
+
+        <section class="summary-card">
+
+            <div class="summary-left">
+
+                <div class="summary-icon">
+                    ⚠
+                </div>
+
+                <div>
+
+                    <h3>Currently Active</h3>
+
+                    <p>
+                        Issues that still require attention
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                class="count"
+                id="activeCount"
+            >
+                0
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search active issues..."
+            >
+
+        </div>
+
+
+        <!-- ================= FILTERS ================= -->
+
+        <div class="filter-row">
+
+            <button
+                class="filter-btn active"
+                data-filter="all"
+            >
+                All Active
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="submitted"
+            >
+                Submitted
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="progress"
+            >
+                In Progress
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="pending"
+            >
+                Pending
+            </button>
+
+        </div>
+
+
+        <!-- ================= REPORT LIST ================= -->
+
+        <section
+            class="reports-list"
+            id="reportsList"
+        >
+        </section>
+
+
+        <!-- ================= EMPTY ================= -->
+
+        <section
+            class="empty-state"
+            id="emptyState"
+            style="display: none;"
+        >
+
+            <div class="empty-icon">
+                🎉
+            </div>
+
+            <h3>No Active Issues Found</h3>
+
+            <p>
+                There are currently no active issues matching
+                your search or filter.
+            </p>
+
+            <a
+                href="./report.html"
+                class="report-btn"
+            >
+                Report a Problem
+            </a>
+
+        </section>
+
+
+        <div class="footer">
+            Smart Community 360° • Building Better Communities Together
+        </div>
+
+    </main>
+
+
+    <!-- ================= AUTH ================= -->
+
+    <script src="../js/auth.js"></script>
+
+
+    <script>
+
+        /* =========================================
+           CURRENT USER
+        ========================================= */
+
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem("smartCommunityUser")
+            ) || null;
+
+
+        /* =========================================
+           LOAD REPORTS
+        ========================================= */
+
+        let reports =
+            JSON.parse(
+                localStorage.getItem("smartCommunityReports")
+            ) || [];
+
+
+        /* =========================================
+           CURRENT USER REPORTS
+        ========================================= */
+
+        if (currentUser && currentUser.email) {
+
+            reports = reports.filter(report => {
+
+                if (!report.user || !report.user.email) {
+                    return true;
+                }
+
+                return (
+                    report.user.email.toLowerCase() ===
+                    currentUser.email.toLowerCase()
+                );
+
+            });
+
+        }
+
+
+        /* =========================================
+           ACTIVE STATUSES
+        ========================================= */
+
+        const activeStatuses = [
+            "submitted",
+            "in progress",
+            "progress",
+            "pending"
+        ];
+
+
+        let activeReports =
+            reports.filter(report => {
+
+                const status =
+                    String(report.status || "")
+                        .toLowerCase()
+                        .trim();
+
+                return activeStatuses.includes(status);
+
+            });
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================= */
+
+        const reportsList =
+            document.getElementById("reportsList");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const activeCount =
+            document.getElementById("activeCount");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+
+        let currentFilter = "all";
+
+
+        /* =========================================
+           COUNT
+        ========================================= */
+
+        activeCount.textContent =
+            activeReports.length;
+
+
+        /* =========================================
+           STATUS CLASS
+        ========================================= */
+
+        function getStatusClass(status) {
+
+            const value =
+                String(status || "")
+                    .toLowerCase()
+                    .trim();
+
+            if (value === "submitted") {
+                return "status-submitted";
+            }
+
+            if (
+                value === "in progress" ||
+                value === "progress"
+            ) {
+                return "status-progress";
+            }
+
+            if (value === "pending") {
+                return "status-pending";
+            }
+
+            return "status-default";
+
+        }
+
+
+        /* =========================================
+           STATUS TEXT
+        ========================================= */
+
+        function getStatusText(status) {
+
+            const value =
+                String(status || "")
+                    .toLowerCase()
+                    .trim();
+
+            if (value === "in progress" || value === "progress") {
+                return "In Progress";
+            }
+
+            if (value === "submitted") {
+                return "Submitted";
+            }
+
+            if (value === "pending") {
+                return "Pending";
+            }
+
+            return status || "Active";
+
+        }
+
+
+        /* =========================================
+           DISPLAY REPORTS
+        ========================================= */
+
+        function displayReports(list) {
+
+            reportsList.innerHTML = "";
+
+            if (list.length === 0) {
+
+                reportsList.style.display = "none";
+                emptyState.style.display = "block";
+
+                return;
+
+            }
+
+            reportsList.style.display = "grid";
+            emptyState.style.display = "none";
+
+
+            list.forEach(report => {
+
+                const card =
+                    document.createElement("article");
+
+                card.className = "report-card";
+
+
+                const statusClass =
+                    getStatusClass(report.status);
+
+                const statusText =
+                    getStatusText(report.status);
+
+
+                card.innerHTML = `
+
+                    <div class="report-top">
+
+                        <div>
+
+                            <div class="report-title">
+                                ${escapeHTML(
+                                    report.title ||
+                                    "Untitled Issue"
+                                )}
+                            </div>
+
+                            <div class="report-id">
+                                Report ID:
+                                ${escapeHTML(
+                                    report.id || "N/A"
+                                )}
+                            </div>
+
+                        </div>
+
+                        <span class="status ${statusClass}">
+                            ${escapeHTML(statusText)}
+                        </span>
+
+                    </div>
+
+
+                    <p class="description">
+                        ${escapeHTML(
+                            report.description ||
+                            "No description available."
+                        )}
+                    </p>
+
+
+                    <div class="details">
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Category
+                            </span>
+
+                            <span class="detail-value">
+                                ${escapeHTML(
+                                    report.category || "N/A"
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Priority
+                            </span>
+
+                            <span class="detail-value">
+                                ${escapeHTML(
+                                    report.priority || "N/A"
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Location
+                            </span>
+
+                            <span class="detail-value">
+                                ${escapeHTML(
+                                    report.location || "N/A"
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Submitted
+                            </span>
+
+                            <span class="detail-value">
+                                ${escapeHTML(
+                                    report.date || "N/A"
+                                )}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                reportsList.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =========================================
+           FILTER + SEARCH
+        ========================================= */
+
+        function applyFilters() {
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            let filtered =
+                activeReports.filter(report => {
+
+                    const status =
+                        String(report.status || "")
+                            .toLowerCase()
+                            .trim();
+
+
+                    /* STATUS FILTER */
+
+                    if (currentFilter !== "all") {
+
+                        if (
+                            currentFilter === "progress"
+                        ) {
+
+                            if (
+                                status !== "progress" &&
+                                status !== "in progress"
+                            ) {
+                                return false;
+                            }
+
+                        } else {
+
+                            if (
+                                status !== currentFilter
+                            ) {
+                                return false;
+                            }
+
+                        }
+
+                    }
+
+
+                    /* SEARCH FILTER */
+
+                    if (!search) {
+                        return true;
+                    }
+
+
+                    return (
+
+                        String(
+                            report.id || ""
+                        )
+                        .toLowerCase()
+                        .includes(search)
+
+                        ||
+
+                        String(
+                            report.title || ""
+                        )
+                        .toLowerCase()
+                        .includes(search)
+
+                        ||
+
+                        String(
+                            report.category || ""
+                        )
+                        .toLowerCase()
+                        .includes(search)
+
+                        ||
+
+                        String(
+                            report.location || ""
+                        )
+                        .toLowerCase()
+                        .includes(search)
+
+                        ||
+
+                        String(
+                            report.description || ""
+                        )
+                        .toLowerCase()
+                        .includes(search)
+
+                    );
+
+                });
+
+
+            displayReports(filtered);
+
+        }
+
+
+        /* =========================================
+           SEARCH EVENT
+        ========================================= */
+
+        searchInput.addEventListener(
+            "input",
+            applyFilters
+        );
+
+
+        /* =========================================
+           FILTER EVENTS
+        ========================================= */
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+
+                    currentFilter =
+                        this.dataset.filter;
+
+                    applyFilters();
+
+                }
+            );
+
+        });
+
+
+        /* =========================================
+           ESCAPE HTML
+        ========================================= */
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =========================================
+           DARK MODE
+        ========================================= */
+
+        const savedDarkMode =
+            localStorage.getItem(
+                "smartCommunityDarkMode"
+            );
+
+
+        if (savedDarkMode === "true") {
+
+            document.body.classList.add("dark");
+
+        }
+
+
+        /* =========================================
+           INITIAL DISPLAY
+        ========================================= */
+
+        displayReports(activeReports);
+
+    </script>
+
+</body>
+</html>

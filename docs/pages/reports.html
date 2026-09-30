@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Reports | Smart Community 360°</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f6;
+            color: #1d2b24;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .header {
+            background: #123c2a;
+            color: white;
+
+            padding: 18px 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.12);
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            background: #35b87f;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+
+        .brand-text h2 {
+            font-size: 19px;
+        }
+
+
+        .brand-text p {
+            font-size: 11px;
+            color: #b8d8c9;
+            margin-top: 3px;
+        }
+
+
+        .back-button {
+            color: white;
+
+            background: rgba(255,255,255,0.12);
+
+            padding: 10px 17px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+
+        .back-button:hover {
+            background: #35b87f;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .page {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 35px 25px 60px;
+        }
+
+
+        .page-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-end;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-header h1 {
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-header p {
+            color: #718078;
+
+            font-size: 14px;
+        }
+
+
+        .report-count {
+            background: #e1f6ec;
+
+            color: #16814f;
+
+            padding: 10px 15px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================
+           TOOLBAR
+        ========================================= */
+
+        .toolbar {
+            background: white;
+
+            border: 1px solid #e8efeb;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,0.05);
+        }
+
+
+        .search-box {
+            flex: 1;
+
+            position: relative;
+        }
+
+
+        .search-box span {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 17px;
+        }
+
+
+        .search-box input {
+            width: 100%;
+
+            padding: 13px 15px 13px 42px;
+
+            border: 1px solid #dce6e0;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            background: #fafcfb;
+        }
+
+
+        .search-box input:focus {
+            border-color: #35b87f;
+        }
+
+
+        .filter-select {
+            padding: 13px 35px 13px 14px;
+
+            border: 1px solid #dce6e0;
+
+            border-radius: 10px;
+
+            background: #fafcfb;
+
+            outline: none;
+
+            font-size: 14px;
+
+            cursor: pointer;
+        }
+
+
+        .filter-select:focus {
+            border-color: #35b87f;
+        }
+
+
+        /* =========================================
+           REPORT GRID
+        ========================================= */
+
+        .reports-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           REPORT CARD
+        ========================================= */
+
+        .report-card {
+            background: white;
+
+            border: 1px solid #e8efeb;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+
+        .report-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 28px rgba(0,0,0,0.09);
+
+            border-color: #35b87f;
+        }
+
+
+        .report-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .report-id {
+            color: #219b68;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .report-title {
+            font-size: 18px;
+
+            margin-top: 7px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status {
+            display: inline-block;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .status.submitted {
+            background: #e6f0ff;
+            color: #326da9;
+        }
+
+
+        .status.progress {
+            background: #fff1d6;
+            color: #a66c00;
+        }
+
+
+        .status.resolved {
+            background: #def7e9;
+            color: #16814f;
+        }
+
+
+        .status.rejected {
+            background: #ffe4e4;
+            color: #c23a3a;
+        }
+
+
+        /* =========================================
+           REPORT DETAILS
+        ========================================= */
+
+        .report-description {
+            color: #65736c;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 18px;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 3;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            padding-top: 16px;
+
+            border-top:
+                1px solid #edf2ef;
+        }
+
+
+        .detail {
+            display: flex;
+
+            gap: 9px;
+
+            align-items: flex-start;
+        }
+
+
+        .detail-icon {
+            font-size: 15px;
+        }
+
+
+        .detail-label {
+            color: #8a9690;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .detail-value {
+            font-size: 12px;
+
+            color: #33443b;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================================
+           PRIORITY
+        ========================================= */
+
+        .priority {
+            font-weight: bold;
+        }
+
+
+        .priority.low {
+            color: #16814f;
+        }
+
+
+        .priority.medium {
+            color: #b77a00;
+        }
+
+
+        .priority.high {
+            color: #d65c25;
+        }
+
+
+        .priority.critical {
+            color: #c23a3a;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-state {
+            background: white;
+
+            border: 1px solid #e8efeb;
+
+            border-radius: 18px;
+
+            padding: 65px 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.04);
+
+            grid-column: 1 / -1;
+        }
+
+
+        .empty-icon {
+            width: 70px;
+            height: 70px;
+
+            background: #e4f7ee;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 18px;
+
+            font-size: 30px;
+        }
+
+
+        .empty-state h2 {
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-state p {
+            color: #718078;
+
+            font-size: 14px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .report-button {
+            display: inline-block;
+
+            background: #35b87f;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .report-button:hover {
+            background: #219b68;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================
+           NO SEARCH RESULTS
+        ========================================= */
+
+        .no-results {
+            background: white;
+
+            border: 1px solid #e8efeb;
+
+            border-radius: 18px;
+
+            padding: 45px 25px;
+
+            text-align: center;
+
+            grid-column: 1 / -1;
+        }
+
+
+        .no-results div {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .no-results p {
+            color: #718078;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           DARK MODE
+        ========================================= */
+
+        body.dark-mode {
+            background: #121c17;
+
+            color: #e8f2ed;
+        }
+
+
+        body.dark-mode .page-header p {
+            color: #a9bbb2;
+        }
+
+
+        body.dark-mode .toolbar,
+        body.dark-mode .report-card,
+        body.dark-mode .empty-state,
+        body.dark-mode .no-results {
+            background: #1b2922;
+
+            border-color: #2b3d34;
+        }
+
+
+        body.dark-mode .search-box input,
+        body.dark-mode .filter-select {
+            background: #16231c;
+
+            color: #e8f2ed;
+
+            border-color: #344a3e;
+        }
+
+
+        body.dark-mode .report-description {
+            color: #a9bbb2;
+        }
+
+
+        body.dark-mode .details-grid {
+            border-color: #2b3d34;
+        }
+
+
+        body.dark-mode .detail-value {
+            color: #d6e4dd;
+        }
+
+
+        body.dark-mode .detail-label {
+            color: #879b91;
+        }
+
+
+        body.dark-mode .empty-state p,
+        body.dark-mode .no-results p {
+            color: #a9bbb2;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .header {
+                padding: 15px 18px;
+            }
+
+
+            .brand-text {
+                display: none;
+            }
+
+
+            .page {
+                padding:
+                    25px 15px 45px;
+            }
+
+
+            .page-header {
+                align-items:
+                    flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+
+            .toolbar {
+                flex-direction: column;
+            }
+
+
+            .filter-select {
+                width: 100%;
+            }
+
+
+            .report-top {
+                flex-direction: column;
+            }
+
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <header class="header">
+
+
+        <div class="brand">
+
+
+            <div class="brand-icon">
+                🌱
+            </div>
+
+
+            <div class="brand-text">
+
+                <h2>
+                    Smart Community 360°
+                </h2>
+
+                <p>
+                    Citizen Community Portal
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="./dashboard.html"
+            class="back-button">
+
+            ← Dashboard
+
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         PAGE
+    ========================================= -->
+
+    <main class="page">
+
+
+        <div class="page-header">
+
+
+            <div>
+
+                <h1>
+                    My Reports
+                </h1>
+
+                <p>
+                    View and track all problems
+                    you have reported in your community.
+                </p>
+
+            </div>
+
+
+            <div
+                class="report-count"
+                id="reportCount">
+
+                0 Reports
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             SEARCH + FILTER
+        ====================================== -->
+
+        <div class="toolbar">
+
+
+            <div class="search-box">
+
+
+                <span>
+                    🔎
+                </span>
+
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by report ID, title, location or category...">
+
+
+            </div>
+
+
+            <select
+                id="statusFilter"
+                class="filter-select">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="submitted">
+                    Submitted
+                </option>
+
+                <option value="progress">
+                    In Progress
+                </option>
+
+                <option value="resolved">
+                    Resolved
+                </option>
+
+                <option value="rejected">
+                    Rejected
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             REPORTS
+        ====================================== -->
+
+        <div
+            class="reports-grid"
+            id="reportsContainer">
+
+        </div>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* =========================================
+           DARK MODE
+        ========================================= */
+
+        const savedDarkMode =
+            localStorage.getItem(
+                "smartCommunityDarkMode"
+            );
+
+
+        if (
+            savedDarkMode === "true"
+        ) {
+
+            document.body.classList.add(
+                "dark-mode"
+            );
+
+        }
+
+
+
+        /* =========================================
+           GET REPORTS
+        ========================================= */
+
+        let allReports = [];
+
+
+        function getReports() {
+
+
+            try {
+
+                allReports =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "smartCommunityReports"
+                        )
+                    ) || [];
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Unable to load reports:",
+                    error
+                );
+
+                allReports = [];
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           CURRENT USER
+        ========================================= */
+
+        function getCurrentUser() {
+
+
+            try {
+
+                const savedUser =
+                    localStorage.getItem(
+                        "smartCommunityUser"
+                    );
+
+
+                if (!savedUser) {
+
+                    return null;
+
+                }
+
+
+                return JSON.parse(
+                    savedUser
+                );
+
+            }
+            catch (error) {
+
+                return null;
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           FILTER USER REPORTS
+        ========================================= */
+
+        function getUserReports() {
+
+
+            const user =
+                getCurrentUser();
+
+
+            if (!user) {
+
+                return allReports;
+
+            }
+
+
+            /*
+             * Reports created by the current user
+             * are matched using their email.
+             */
+
+            const userEmail =
+                String(
+                    user.email || ""
+                ).toLowerCase();
+
+
+            if (!userEmail) {
+
+                return allReports;
+
+            }
+
+
+            const userReports =
+                allReports.filter(
+                    function (report) {
+
+
+                        const reportEmail =
+                            report.user &&
+                            report.user.email
+                                ? String(
+                                    report.user.email
+                                ).toLowerCase()
+                                : "";
+
+
+                        return (
+                            reportEmail ===
+                            userEmail
+                        );
+
+                    }
+                );
+
+
+            /*
+             * If old reports don't contain
+             * user information, show them too.
+             */
+
+            const reportsWithoutUser =
+                allReports.filter(
+                    function (report) {
+
+                        return !report.user;
+
+                    }
+                );
+
+
+            return [
+                ...userReports,
+                ...reportsWithoutUser
+            ];
+
+        }
+
+
+
+        /* =========================================
+           ESCAPE HTML
+        ========================================= */
+
+        function escapeHtml(value) {
+
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+
+        /* =========================================
+           STATUS CLASS
+        ========================================= */
+
+        function getStatusClass(status) {
+
+
+            const value =
+                String(
+                    status || "Submitted"
+                )
+                .toLowerCase();
+
+
+            if (
+                value.includes("progress") ||
+                value.includes("working") ||
+                value.includes("processing")
+            ) {
+
+                return "progress";
+
+            }
+
+
+            if (
+                value.includes("resolved") ||
+                value.includes("complete") ||
+                value.includes("closed")
+            ) {
+
+                return "resolved";
+
+            }
+
+
+            if (
+                value.includes("reject")
+            ) {
+
+                return "rejected";
+
+            }
+
+
+            return "submitted";
+
+        }
+
+
+
+        /* =========================================
+           PRIORITY CLASS
+        ========================================= */
+
+        function getPriorityClass(priority) {
+
+
+            const value =
+                String(
+                    priority || ""
+                )
+                .toLowerCase();
+
+
+            if (
+                value.includes("critical")
+            ) {
+
+                return "critical";
+
+            }
+
+
+            if (
+                value.includes("high")
+            ) {
+
+                return "high";
+
+            }
+
+
+            if (
+                value.includes("medium")
+            ) {
+
+                return "medium";
+
+            }
+
+
+            return "low";
+
+        }
+
+
+
+        /* =========================================
+           FORMAT DATE
+        ========================================= */
+
+        function formatDate(dateValue) {
+
+
+            if (!dateValue) {
+
+                return "Not available";
+
+            }
+
+
+            const date =
+                new Date(
+                    dateValue
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return String(
+                    dateValue
+                );
+
+            }
+
+
+            return date.toLocaleString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           CREATE REPORT CARD
+        ========================================= */
+
+        function createReportCard(report) {
+
+
+            const status =
+                report.status ||
+                "Submitted";
+
+
+            const priority =
+                report.priority ||
+                "Normal";
+
+
+            const category =
+                report.category ||
+                "General";
+
+
+            const urgency =
+                report.urgency ||
+                "Normal";
+
+
+            return `
+
+                <article class="report-card">
+
+
+                    <div class="report-top">
+
+
+                        <div>
+
+
+                            <div class="report-id">
+
+                                ${escapeHtml(
+                                    report.id ||
+                                    "SC360-UNKNOWN"
+                                )}
+
+                            </div>
+
+
+                            <h2 class="report-title">
+
+                                ${escapeHtml(
+                                    report.title ||
+                                    "Community Issue"
+                                )}
+
+                            </h2>
+
+
+                        </div>
+
+
+                        <span
+                            class="status ${getStatusClass(status)}">
+
+                            ${escapeHtml(
+                                status
+                            )}
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    <p class="report-description">
+
+                        ${escapeHtml(
+                            report.description ||
+                            "No description provided."
+                        )}
+
+                    </p>
+
+
+
+                    <div class="details-grid">
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="detail">
+
+                            <div class="detail-icon">
+                                🏷️
+                            </div>
+
+                            <div>
+
+                                <div class="detail-label">
+                                    Category
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        category
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PRIORITY -->
+
+                        <div class="detail">
+
+                            <div class="detail-icon">
+                                ⚡
+                            </div>
+
+                            <div>
+
+                                <div class="detail-label">
+                                    Priority
+                                </div>
+
+                                <div
+                                    class="detail-value priority ${getPriorityClass(priority)}">
+
+                                    ${escapeHtml(
+                                        priority
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- LOCATION -->
+
+                        <div class="detail">
+
+                            <div class="detail-icon">
+                                📍
+                            </div>
+
+                            <div>
+
+                                <div class="detail-label">
+                                    Location
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        report.location ||
+                                        "Not provided"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- URGENCY -->
+
+                        <div class="detail">
+
+                            <div class="detail-icon">
+                                🚨
+                            </div>
+
+                            <div>
+
+                                <div class="detail-label">
+                                    Urgency
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        urgency
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DATE -->
+
+                        <div class="detail">
+
+                            <div class="detail-icon">
+                                🕒
+                            </div>
+
+                            <div>
+
+                                <div class="detail-label">
+                                    Submitted
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        formatDate(
+                                            report.date
+                                        )
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- REPORT ID -->
+
+                        <div class="detail">
+
+                            <div class="detail-icon">
+                                🔖
+                            </div>
+
+                            <div>
+
+                                <div class="detail-label">
+                                    Report ID
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        report.id ||
+                                        "N/A"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+            `;
+
+        }
+
+
+
+        /* =========================================
+           DISPLAY REPORTS
+        ========================================= */
+
+        function displayReports() {
+
+
+            const container =
+                document.getElementById(
+                    "reportsContainer"
+                );
+
+
+            const countElement =
+                document.getElementById(
+                    "reportCount"
+                );
+
+
+            const searchInput =
+                document.getElementById(
+                    "searchInput"
+                );
+
+
+            const statusFilter =
+                document.getElementById(
+                    "statusFilter"
+                );
+
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const selectedStatus =
+                statusFilter.value;
+
+
+            const reports =
+                getUserReports();
+
+
+            const filtered =
+                reports.filter(
+                    function (report) {
+
+
+                        const text = `
+
+                            ${report.id || ""}
+
+                            ${report.title || ""}
+
+                            ${report.location || ""}
+
+                            ${report.category || ""}
+
+                            ${report.description || ""}
+
+                        `.toLowerCase();
+
+
+                        const matchesSearch =
+                            !search ||
+                            text.includes(
+                                search
+                            );
+
+
+                        const status =
+                            String(
+                                report.status ||
+                                "Submitted"
+                            ).toLowerCase();
+
+
+                        let matchesStatus =
+                            true;
+
+
+                        if (
+                            selectedStatus ===
+                            "submitted"
+                        ) {
+
+                            matchesStatus =
+                                !status.includes(
+                                    "progress"
+                                ) &&
+                                !status.includes(
+                                    "resolved"
+                                ) &&
+                                !status.includes(
+                                    "reject"
+                                );
+
+                        }
+
+
+                        if (
+                            selectedStatus ===
+                            "progress"
+                        ) {
+
+                            matchesStatus =
+                                status.includes(
+                                    "progress"
+                                ) ||
+                                status.includes(
+                                    "working"
+                                ) ||
+                                status.includes(
+                                    "processing"
+                                );
+
+                        }
+
+
+                        if (
+                            selectedStatus ===
+                            "resolved"
+                        ) {
+
+                            matchesStatus =
+                                status.includes(
+                                    "resolved"
+                                ) ||
+                                status.includes(
+                                    "complete"
+                                ) ||
+                                status.includes(
+                                    "closed"
+                                );
+
+                        }
+
+
+                        if (
+                            selectedStatus ===
+                            "rejected"
+                        ) {
+
+                            matchesStatus =
+                                status.includes(
+                                    "reject"
+                                );
+
+                        }
+
+
+                        return (
+                            matchesSearch &&
+                            matchesStatus
+                        );
+
+                    }
+                );
+
+
+            countElement.textContent =
+                `${filtered.length} ${
+                    filtered.length === 1
+                        ? "Report"
+                        : "Reports"
+                }`;
+
+
+            if (reports.length === 0) {
+
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+
+                        <div class="empty-icon">
+                            📋
+                        </div>
+
+
+                        <h2>
+                            No Reports Yet
+                        </h2>
+
+
+                        <p>
+                            You haven't submitted
+                            any community problems yet.
+                        </p>
+
+
+                        <a
+                            href="./report.html"
+                            class="report-button">
+
+                            + Report a Problem
+
+                        </a>
+
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            if (filtered.length === 0) {
+
+
+                container.innerHTML = `
+
+                    <div class="no-results">
+
+
+                        <div>
+                            🔎
+                        </div>
+
+
+                        <p>
+                            No reports match your
+                            search or selected filter.
+                        </p>
+
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                filtered
+                    .map(
+                        createReportCard
+                    )
+                    .join("");
+
+        }
+
+
+
+        /* =========================================
+           EVENTS
+        ========================================= */
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                displayReports
+            );
+
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                displayReports
+            );
+
+
+
+        /* =========================================
+           INITIAL LOAD
+        ========================================= */
+
+        getReports();
+
+        displayReports();
+
+
+    </script>
+
+
+    <!-- Authentication -->
+    <script src="../js/auth.js"></script>
+
+
+</body>
+
+</html>

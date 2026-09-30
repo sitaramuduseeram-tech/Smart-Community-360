@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | Smart Community 360°</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <title>
+        Dashboard | Smart Community 360°
+    </title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
 
     <style>
+
+        /* ==========================================
+           GLOBAL
+        ========================================== */
+
         * {
             margin: 0;
             padding: 0;
@@ -21,8 +33,13 @@
             color: #1d2b24;
         }
 
+        a {
+            text-decoration: none;
+        }
+
+
         /* ==========================================
-           DASHBOARD CONTAINER
+           DASHBOARD
         ========================================== */
 
         .dashboard-container {
@@ -30,80 +47,100 @@
             min-height: 100vh;
         }
 
+
         /* ==========================================
            SIDEBAR
         ========================================== */
 
         .sidebar {
             width: 250px;
+
             background: #123c2a;
             color: white;
+
             padding: 25px 18px;
+
             position: fixed;
+
             left: 0;
             top: 0;
             bottom: 0;
+
             z-index: 1000;
-            pointer-events: auto;
         }
+
 
         .brand {
             display: flex;
             align-items: center;
+
             gap: 10px;
+
             font-size: 20px;
             font-weight: bold;
+
             margin-bottom: 40px;
         }
+
 
         .brand-icon {
             width: 40px;
             height: 40px;
+
             background: #35b87f;
+
             border-radius: 12px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 21px;
-            flex-shrink: 0;
         }
+
 
         .menu-title {
             font-size: 11px;
+
             color: #9fb9ad;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
+
             margin: 20px 12px 12px;
         }
 
+
         .nav-menu {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
+
 
         .nav-menu li {
             margin-bottom: 7px;
         }
 
+
         .nav-menu a {
             position: relative;
-            z-index: 1001;
-            pointer-events: auto !important;
-            cursor: pointer;
-
-            text-decoration: none;
-            color: #d7e8e0;
 
             display: flex;
             align-items: center;
+
             gap: 13px;
 
             padding: 13px 14px;
+
             border-radius: 10px;
+
+            color: #d7e8e0;
+
+            cursor: pointer;
 
             transition: 0.3s;
         }
+
 
         .nav-menu a:hover,
         .nav-menu a.active {
@@ -111,17 +148,16 @@
             color: white;
         }
 
+
         .logout {
             position: absolute;
+
             bottom: 25px;
+
             left: 18px;
             right: 18px;
         }
 
-        .logout-link {
-            position: relative;
-            z-index: 1001;
-        }
 
         /* ==========================================
            MAIN CONTENT
@@ -129,121 +165,214 @@
 
         .main-content {
             margin-left: 250px;
+
             width: calc(100% - 250px);
+
             padding: 25px 35px;
         }
 
+
         /* ==========================================
-           TOPBAR
+           TOP BAR
         ========================================== */
 
         .topbar {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin-bottom: 30px;
         }
 
+
         .welcome h1 {
             font-size: 28px;
+
             margin-bottom: 6px;
         }
 
+
         .welcome p {
             color: #718078;
+
             margin-bottom: 4px;
         }
 
+
         .top-actions {
             display: flex;
+
             align-items: center;
+
             gap: 15px;
         }
+
 
         .icon-btn {
             width: 42px;
             height: 42px;
+
             border: none;
+
             background: white;
+
             border-radius: 50%;
+
             cursor: pointer;
+
             font-size: 18px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.06);
+
+            transition: 0.3s;
         }
 
+
         .icon-btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
+
 
         .profile {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             background: white;
+
             padding: 7px 12px 7px 7px;
+
             border-radius: 30px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-            text-decoration: none;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.06);
+
             color: #1d2b24;
         }
+
 
         .profile img {
             width: 36px;
             height: 36px;
+
             border-radius: 50%;
+
             object-fit: cover;
         }
+
 
         .profile span {
             font-weight: 600;
         }
 
+
         /* ==========================================
-           STAT CARDS
+           STATISTICS
         ========================================== */
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 18px;
+
             margin-bottom: 28px;
         }
 
+
         .stat-card {
+            display: block;
+
             background: white;
+
             padding: 22px;
+
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+
             border: 1px solid #edf2ef;
+
+            color: #1d2b24;
+
+            cursor: pointer;
+
+            transition: 0.3s;
         }
+
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 28px rgba(0,0,0,0.10);
+
+            border-color: #35b87f;
+        }
+
 
         .stat-top {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
         }
+
 
         .stat-icon {
             width: 45px;
             height: 45px;
+
             border-radius: 12px;
+
             background: #e4f7ee;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
             font-size: 21px;
         }
 
+
         .stat-card h2 {
             margin-top: 18px;
+
             font-size: 27px;
         }
 
+
         .stat-card p {
             margin-top: 5px;
+
             color: #718078;
+
             font-size: 14px;
         }
+
+
+        .card-link {
+            display: inline-block;
+
+            margin-top: 14px;
+
+            color: #219b68;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
 
         /* ==========================================
            SECTION TITLE
@@ -251,20 +380,28 @@
 
         .section-title {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin-bottom: 16px;
         }
+
 
         .section-title h2 {
             font-size: 20px;
         }
 
+
         .section-title a {
             color: #219b68;
-            text-decoration: none;
+
             font-size: 14px;
+
+            font-weight: 600;
         }
+
 
         /* ==========================================
            QUICK ACTIONS
@@ -272,59 +409,92 @@
 
         .quick-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 18px;
+
             margin-bottom: 30px;
         }
 
+
         .quick-card {
             background: white;
+
             padding: 22px;
+
             border-radius: 16px;
-            text-decoration: none;
+
             color: #1d2b24;
+
             border: 1px solid #edf2ef;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
             transition: 0.3s;
         }
 
+
         .quick-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.10);
+
+            border-color: #35b87f;
         }
+
 
         .quick-icon {
             font-size: 27px;
+
             margin-bottom: 13px;
         }
 
+
         .quick-card h3 {
             font-size: 16px;
+
             margin-bottom: 6px;
         }
 
+
         .quick-card p {
             color: #718078;
+
             font-size: 13px;
         }
 
+
         /* ==========================================
-           BOTTOM GRID
+           LOWER GRID
         ========================================== */
 
         .content-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
+
+            grid-template-columns:
+                1.5fr 1fr;
+
             gap: 20px;
         }
 
+
         .panel {
             background: white;
+
             border-radius: 16px;
+
             padding: 22px;
+
             border: 1px solid #edf2ef;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
         }
+
 
         /* ==========================================
            ISSUES
@@ -332,165 +502,259 @@
 
         .issue {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             padding: 15px 0;
-            border-bottom: 1px solid #edf2ef;
+
+            border-bottom:
+                1px solid #edf2ef;
         }
+
 
         .issue:last-child {
             border-bottom: none;
         }
 
+
         .issue-info {
             display: flex;
+
             align-items: center;
+
             gap: 13px;
         }
+
 
         .issue-icon {
             width: 40px;
             height: 40px;
+
             border-radius: 10px;
+
             background: #eef8f3;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
         }
 
+
         .issue-info h4 {
             font-size: 14px;
+
             margin-bottom: 4px;
         }
 
+
         .issue-info p {
             color: #7b8881;
+
             font-size: 12px;
         }
 
+
         .status {
             padding: 6px 10px;
+
             border-radius: 20px;
+
             font-size: 11px;
+
             font-weight: bold;
         }
 
+
         .status.progress {
             background: #fff3d9;
+
             color: #b77a00;
         }
 
+
         .status.resolved {
             background: #ddf7e9;
+
             color: #16814f;
         }
 
+
         .status.submitted {
             background: #e4efff;
+
             color: #3573b9;
         }
 
+
         /* ==========================================
-           COMMUNITY IMPACT
+           IMPACT
         ========================================== */
 
         .impact-number {
             font-size: 38px;
+
             font-weight: bold;
+
             color: #219b68;
+
             margin: 15px 0 8px;
         }
 
+
         .progress-bar {
             height: 10px;
+
             background: #e8efeb;
+
             border-radius: 20px;
+
             overflow: hidden;
+
             margin: 15px 0;
         }
 
+
         .progress-fill {
             width: 78%;
+
             height: 100%;
+
             background: #35b87f;
+
             border-radius: 20px;
         }
 
+
         .impact-text {
             color: #718078;
+
             font-size: 13px;
+
             line-height: 1.6;
         }
 
+
         /* ==========================================
-           NOTIFICATION PANEL
+           NOTIFICATIONS
         ========================================== */
 
         #notificationPanel {
             position: fixed;
+
             top: 82px;
+
             right: 35px;
+
             width: 350px;
-            max-width: calc(100vw - 30px);
+
+            max-width:
+                calc(100vw - 30px);
+
             background: white;
+
             border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
-            border: 1px solid #edf2ef;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.18);
+
+            border:
+                1px solid #edf2ef;
+
             z-index: 9999;
+
             display: none;
+
             overflow: hidden;
         }
 
+
         .notification-header {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             padding: 18px;
-            border-bottom: 1px solid #edf2ef;
-            font-size: 16px;
+
+            border-bottom:
+                1px solid #edf2ef;
         }
+
 
         #closeNotifications {
             border: none;
+
             background: transparent;
+
             font-size: 24px;
+
             cursor: pointer;
+
             color: #718078;
         }
 
+
         .notification-item {
             padding: 15px 18px;
-            border-bottom: 1px solid #edf2ef;
+
+            border-bottom:
+                1px solid #edf2ef;
+
             display: flex;
+
             gap: 12px;
+
             align-items: flex-start;
         }
 
-        .notification-item:last-child {
-            border-bottom: none;
-        }
 
         .notification-icon {
             width: 38px;
             height: 38px;
+
             border-radius: 10px;
+
             background: #e4f7ee;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
             flex-shrink: 0;
         }
 
+
         .notification-content h4 {
             font-size: 13px;
+
             margin-bottom: 4px;
         }
 
+
         .notification-content p {
             font-size: 12px;
+
             color: #718078;
+
             line-height: 1.5;
         }
+
+
+        .notification-empty {
+            padding: 30px 20px;
+
+            text-align: center;
+
+            color: #718078;
+
+            font-size: 13px;
+        }
+
 
         /* ==========================================
            DARK MODE
@@ -498,44 +762,53 @@
 
         body.dark-mode {
             background: #121c17;
+
             color: #e8f2ed;
         }
+
 
         body.dark-mode .welcome p {
             color: #a9bbb2;
         }
 
+
         body.dark-mode .icon-btn,
         body.dark-mode .profile {
             background: #1b2922;
+
             color: #e8f2ed;
         }
+
 
         body.dark-mode .stat-card,
         body.dark-mode .quick-card,
         body.dark-mode .panel {
             background: #1b2922;
+
             color: #e8f2ed;
+
             border-color: #2b3d34;
         }
 
-        body.dark-mode .quick-card {
-            color: #e8f2ed;
-        }
 
         body.dark-mode .stat-card p,
         body.dark-mode .quick-card p,
-        body.dark-mode .issue-info p {
+        body.dark-mode .issue-info p,
+        body.dark-mode .impact-text {
             color: #a9bbb2;
         }
 
+
+        body.dark-mode .card-link,
         body.dark-mode .section-title a {
             color: #5ed39b;
         }
 
+
         body.dark-mode .issue {
             border-color: #2b3d34;
         }
+
 
         body.dark-mode .issue-icon,
         body.dark-mode .stat-icon,
@@ -543,37 +816,47 @@
             background: #254336;
         }
 
+
         body.dark-mode .progress-bar {
             background: #2b3d34;
         }
 
+
         body.dark-mode #notificationPanel {
             background: #1b2922;
+
             color: #e8f2ed;
+
             border-color: #2b3d34;
         }
+
 
         body.dark-mode .notification-header,
         body.dark-mode .notification-item {
             border-color: #2b3d34;
         }
 
+
         body.dark-mode .notification-content p {
             color: #a9bbb2;
         }
 
+
         body.dark-mode #closeNotifications {
             color: #a9bbb2;
         }
+
 
         /* ==========================================
            RESPONSIVE
         ========================================== */
 
         @media (max-width: 1100px) {
+
             .stats-grid,
             .quick-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .content-grid {
@@ -581,11 +864,16 @@
             }
         }
 
+
         @media (max-width: 768px) {
+
             .sidebar {
                 width: 70px;
-                padding: 20px 10px;
+
+                padding:
+                    20px 10px;
             }
+
 
             .brand span,
             .menu-title,
@@ -594,70 +882,106 @@
                 display: none;
             }
 
+
             .brand {
                 justify-content: center;
             }
 
+
             .nav-menu a {
                 justify-content: center;
-                padding: 13px 8px;
+
+                padding:
+                    13px 8px;
             }
+
 
             .logout {
                 left: 10px;
+
                 right: 10px;
             }
 
+
             .main-content {
                 margin-left: 70px;
-                width: calc(100% - 70px);
+
+                width:
+                    calc(100% - 70px);
+
                 padding: 20px;
             }
+
 
             .welcome h1 {
                 font-size: 22px;
             }
+
 
             .profile span {
                 display: none;
             }
         }
 
+
         @media (max-width: 550px) {
+
             .stats-grid,
             .quick-grid {
                 grid-template-columns: 1fr;
             }
 
+
             .topbar {
-                align-items: flex-start;
+                align-items:
+                    flex-start;
             }
+
 
             .top-actions {
                 gap: 5px;
             }
+
 
             .icon-btn {
                 width: 36px;
                 height: 36px;
             }
 
+
             .main-content {
                 padding: 15px;
             }
 
+
             #notificationPanel {
                 right: 15px;
+
                 top: 70px;
-                width: calc(100vw - 30px);
+
+                width:
+                    calc(100vw - 30px);
+            }
+
+
+            .issue {
+                align-items:
+                    flex-start;
+
+                gap: 10px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="dashboard-container">
+
 
     <!-- ==========================================
          SIDEBAR
@@ -665,157 +989,273 @@
 
     <aside class="sidebar">
 
+
         <div class="brand">
-            <div class="brand-icon">🌱</div>
-            <span>Smart Community</span>
+
+            <div class="brand-icon">
+                🌱
+            </div>
+
+            <span>
+                Smart Community
+            </span>
+
         </div>
 
-        <div class="menu-title">Main Menu</div>
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
 
         <ul class="nav-menu">
 
+
             <li>
+
                 <a href="./dashboard.html"
-                   class="active"
-                   data-page="dashboard.html">
+                   class="active">
+
                     <span>🏠</span>
-                    <span>Dashboard</span>
+
+                    <span>
+                        Dashboard
+                    </span>
+
                 </a>
+
             </li>
 
+
             <li>
-                <a href="./report.html"
-                   data-page="report.html">
+
+                <a href="./report.html">
+
                     <span>📍</span>
-                    <span>Report Problem</span>
+
+                    <span>
+                        Report Problem
+                    </span>
+
                 </a>
+
             </li>
 
+
             <li>
-                <a href="./track.html"
-                   data-page="track.html">
+
+                <a href="./track.html">
+
                     <span>🔎</span>
-                    <span>Track Issue</span>
+
+                    <span>
+                        Track Issue
+                    </span>
+
                 </a>
+
             </li>
 
+
             <li>
-                <a href="./map.html"
-                   data-page="map.html">
+
+                <a href="./map.html">
+
                     <span>🗺️</span>
-                    <span>Community Map</span>
+
+                    <span>
+                        Community Map
+                    </span>
+
                 </a>
+
             </li>
 
+
             <li>
-                <a href="./events.html"
-                   data-page="events.html">
+
+                <a href="./events.html">
+
                     <span>📅</span>
-                    <span>Events</span>
+
+                    <span>
+                        Events
+                    </span>
+
                 </a>
+
             </li>
+
 
         </ul>
 
-        <div class="menu-title">Account</div>
+
+        <div class="menu-title">
+            Account
+        </div>
+
 
         <ul class="nav-menu">
 
-            <li>
-                <a href="./profile.html"
-                   data-page="profile.html">
-                    <span>👤</span>
-                    <span>My Profile</span>
-                </a>
-            </li>
 
             <li>
-                <a href="./settings.html"
-                   data-page="settings.html">
-                    <span>⚙️</span>
-                    <span>Settings</span>
+
+                <a href="./profile.html">
+
+                    <span>👤</span>
+
+                    <span>
+                        My Profile
+                    </span>
+
                 </a>
+
             </li>
+
+
+            <li>
+
+                <a href="./settings.html">
+
+                    <span>⚙️</span>
+
+                    <span>
+                        Settings
+                    </span>
+
+                </a>
+
+            </li>
+
 
         </ul>
+
 
         <div class="logout">
+
             <a href="../index.html"
-               class="logout-link"
-               data-page="../index.html">
+               class="nav-menu">
+
                 <span>🚪</span>
-                <span>Logout</span>
+
+                <span>
+                    Logout
+                </span>
+
             </a>
+
         </div>
+
 
     </aside>
 
 
+
     <!-- ==========================================
-         MAIN CONTENT
+         MAIN
     ========================================== -->
 
     <main class="main-content">
 
-        <!-- TOPBAR -->
+
+        <!-- ==========================================
+             TOPBAR
+        ========================================== -->
 
         <div class="topbar">
 
+
             <div class="welcome">
 
+
                 <h1>
-                    Good Morning,
-                    <span id="userName">Ramu</span> 👋
+
+                    <span id="greetingText">
+                        Good Morning
+                    </span>,
+
+                    <span id="userName">
+                        User
+                    </span>
+
+                    👋
+
                 </h1>
 
-                <p>
-                    Here’s what's happening in your community today.
-                </p>
 
                 <p>
-                    <span id="userEmail">Loading...</span>
-                    ·
-                    <span id="userCity">Loading...</span>
+                    Here’s what's happening in your
+                    community today.
                 </p>
+
+
+                <p>
+
+                    <span id="userEmail">
+                        Loading...
+                    </span>
+
+                    ·
+
+                    <span id="userCity">
+                        Loading...
+                    </span>
+
+                </p>
+
 
             </div>
 
 
+
             <div class="top-actions">
+
 
                 <button
                     class="icon-btn"
                     id="notificationButton"
                     title="Notifications">
+
                     🔔
+
                 </button>
+
 
                 <button
                     class="icon-btn"
                     id="darkModeButton"
                     title="Dark Mode">
+
                     🌙
+
                 </button>
+
 
                 <a
                     href="./profile.html"
-                    class="profile"
-                    id="dashboardProfile">
+                    class="profile">
 
                     <img
                         id="dashboardProfileImage"
                         src="https://i.pravatar.cc/100?img=12"
                         alt="Profile">
 
-                    <span id="dashboardProfileName">
+
+                    <span
+                        id="dashboardProfileName">
+
                         User
+
                     </span>
 
                 </a>
 
+
             </div>
 
+
         </div>
+
 
 
         <!-- ==========================================
@@ -824,90 +1264,192 @@
 
         <div class="stats-grid">
 
-            <div class="stat-card">
+
+            <!-- MY REPORTS -->
+
+            <a
+                href="./reports.html"
+                class="stat-card">
+
 
                 <div class="stat-top">
 
+
                     <div>
-                        <small>My Reports</small>
+
+                        <small>
+                            My Reports
+                        </small>
+
                     </div>
 
-                    <div class="stat-icon">📋</div>
+
+                    <div class="stat-icon">
+                        📋
+                    </div>
+
 
                 </div>
 
-                <h2 id="totalReports">0</h2>
+
+                <h2 id="totalReports">
+                    0
+                </h2>
+
 
                 <p>
                     Total reports submitted
                 </p>
 
-            </div>
+
+                <span class="card-link">
+                    View reports →
+                </span>
 
 
-            <div class="stat-card">
+            </a>
+
+
+
+            <!-- RESOLVED -->
+
+            <a
+                href="./resolved.html"
+                class="stat-card">
+
 
                 <div class="stat-top">
 
+
                     <div>
-                        <small>Resolved</small>
+
+                        <small>
+                            Resolved
+                        </small>
+
                     </div>
 
-                    <div class="stat-icon">✅</div>
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
 
                 </div>
 
-                <h2 id="resolvedReports">0</h2>
+
+                <h2 id="resolvedReports">
+                    0
+                </h2>
+
 
                 <p>
                     Problems resolved
                 </p>
 
-            </div>
+
+                <span class="card-link">
+                    View resolved →
+                </span>
 
 
-            <div class="stat-card">
+            </a>
+
+
+
+            <!-- ACTIVE -->
+
+            <a
+                href="./active-issues.html"
+                class="stat-card">
+
 
                 <div class="stat-top">
 
+
                     <div>
-                        <small>Active Issues</small>
+
+                        <small>
+                            Active Issues
+                        </small>
+
                     </div>
 
-                    <div class="stat-icon">⚠️</div>
+
+                    <div class="stat-icon">
+                        ⚠️
+                    </div>
+
 
                 </div>
 
-                <h2 id="activeReports">0</h2>
+
+                <h2 id="activeReports">
+                    0
+                </h2>
+
 
                 <p>
                     Currently being handled
                 </p>
 
-            </div>
+
+                <span class="card-link">
+                    View active →
+                </span>
 
 
-            <div class="stat-card">
+            </a>
+
+
+
+            <!-- POINTS -->
+
+            <a
+                href="./impact.html"
+                class="stat-card">
+
 
                 <div class="stat-top">
 
+
                     <div>
-                        <small>Community Points</small>
+
+                        <small>
+                            Community Points
+                        </small>
+
                     </div>
 
-                    <div class="stat-icon">🌟</div>
+
+                    <div class="stat-icon">
+                        🌟
+                    </div>
+
 
                 </div>
 
-                <h2 id="userPoints">0</h2>
+
+                <h2 id="userPoints">
+                    0
+                </h2>
+
 
                 <p>
                     Your community contribution
                 </p>
 
-            </div>
+
+                <span class="card-link">
+                    View impact →
+                </span>
+
+
+            </a>
+
 
         </div>
+
 
 
         <!-- ==========================================
@@ -916,89 +1458,121 @@
 
         <div class="section-title">
 
-            <h2>Quick Actions</h2>
+
+            <h2>
+                Quick Actions
+            </h2>
+
 
             <a href="./report.html">
                 View all →
             </a>
 
+
         </div>
+
 
 
         <div class="quick-grid">
 
-            <a href="./report.html"
-               class="quick-card">
+
+            <a
+                href="./report.html"
+                class="quick-card">
+
 
                 <div class="quick-icon">
                     📍
                 </div>
 
+
                 <h3>
                     Report a Problem
                 </h3>
+
 
                 <p>
                     Report issues in your community.
                 </p>
 
+
             </a>
 
 
-            <a href="./track.html"
-               class="quick-card">
+
+            <a
+                href="./track.html"
+                class="quick-card">
+
 
                 <div class="quick-icon">
                     🔎
                 </div>
 
+
                 <h3>
                     Track Issue
                 </h3>
+
 
                 <p>
                     Check the status of your reports.
                 </p>
 
+
             </a>
 
 
-            <a href="./map.html"
-               class="quick-card">
+
+            <a
+                href="./map.html"
+                class="quick-card">
+
 
                 <div class="quick-icon">
                     🗺️
                 </div>
 
+
                 <h3>
                     Community Map
                 </h3>
+
 
                 <p>
                     Explore reported issues nearby.
                 </p>
 
+
             </a>
 
 
-            <a href="./events.html"
-               class="quick-card">
+
+            <a
+                href="./events.html"
+                class="quick-card">
+
 
                 <div class="quick-icon">
                     📅
                 </div>
 
+
                 <h3>
                     Community Events
                 </h3>
+
 
                 <p>
                     Discover upcoming local events.
                 </p>
 
+
             </a>
 
+
         </div>
+
 
 
         <!-- ==========================================
@@ -1012,27 +1586,36 @@
 
             <div class="panel">
 
+
                 <div class="section-title">
+
 
                     <h2>
                         Recent Community Issues
                     </h2>
 
+
                     <a href="./track.html">
                         View all →
                     </a>
 
+
                 </div>
+
 
                 <div id="recentIssues">
 
+
                     <div class="issue">
 
+
                         <div class="issue-info">
+
 
                             <div class="issue-icon">
                                 💡
                             </div>
+
 
                             <div>
 
@@ -1040,28 +1623,39 @@
                                     Streetlight Not Working
                                 </h4>
 
+
                                 <p>
-                                    Main Road • 2 hours ago
+                                    Main Road
+                                    • 2 hours ago
                                 </p>
 
                             </div>
 
+
                         </div>
 
-                        <span class="status progress">
+
+                        <span
+                            class="status progress">
+
                             In Progress
+
                         </span>
+
 
                     </div>
 
 
                     <div class="issue">
 
+
                         <div class="issue-info">
+
 
                             <div class="issue-icon">
                                 🚰
                             </div>
+
 
                             <div>
 
@@ -1069,28 +1663,39 @@
                                     Water Leakage
                                 </h4>
 
+
                                 <p>
-                                    Gandhi Nagar • Yesterday
+                                    Gandhi Nagar
+                                    • Yesterday
                                 </p>
 
                             </div>
 
+
                         </div>
 
-                        <span class="status resolved">
+
+                        <span
+                            class="status resolved">
+
                             Resolved
+
                         </span>
+
 
                     </div>
 
 
                     <div class="issue">
 
+
                         <div class="issue-info">
+
 
                             <div class="issue-icon">
                                 🗑️
                             </div>
+
 
                             <div>
 
@@ -1098,28 +1703,40 @@
                                     Garbage Collection
                                 </h4>
 
+
                                 <p>
-                                    Market Area • 2 days ago
+                                    Market Area
+                                    • 2 days ago
                                 </p>
 
                             </div>
 
+
                         </div>
 
-                        <span class="status submitted">
+
+                        <span
+                            class="status submitted">
+
                             Submitted
+
                         </span>
+
 
                     </div>
 
+
                 </div>
 
+
             </div>
+
 
 
             <!-- COMMUNITY IMPACT -->
 
             <div class="panel">
+
 
                 <div class="section-title">
 
@@ -1127,15 +1744,22 @@
                         Community Impact
                     </h2>
 
+                    <a href="./impact.html">
+                        View →
+                    </a>
+
                 </div>
+
 
                 <div class="impact-number">
                     78%
                 </div>
 
+
                 <p>
                     Community Improvement
                 </p>
+
 
                 <div class="progress-bar">
 
@@ -1143,20 +1767,26 @@
 
                 </div>
 
+
                 <p class="impact-text">
 
-                    Your community is becoming better through
-                    citizen participation and faster issue resolution.
+                    Your community is becoming better
+                    through citizen participation and
+                    faster issue resolution.
 
                 </p>
 
+
             </div>
 
+
         </div>
+
 
     </main>
 
 </div>
+
 
 
 <!-- ==========================================
@@ -1165,56 +1795,497 @@
 
 <div id="notificationPanel">
 
+
     <div class="notification-header">
+
 
         <strong>
             Notifications
         </strong>
 
+
         <button id="closeNotifications">
             ×
         </button>
 
+
     </div>
 
-    <div id="notificationList"></div>
+
+    <div id="notificationList">
+    </div>
+
 
 </div>
 
 
+
 <script>
 
+
     /* ==========================================
-       NAVIGATION
+       DYNAMIC GREETING
     ========================================== */
 
-    document.querySelectorAll(
-        ".nav-menu a[data-page], .logout-link[data-page]"
-    ).forEach(function (link) {
+    function updateGreeting() {
 
-        link.addEventListener("click", function (event) {
+        const hour =
+            new Date().getHours();
 
-            const targetPage =
-                this.getAttribute("data-page");
 
-            if (!targetPage) {
-                return;
+        let greeting =
+            "Good Morning";
+
+
+        if (
+            hour >= 12 &&
+            hour < 17
+        ) {
+
+            greeting =
+                "Good Afternoon";
+
+        }
+        else if (
+            hour >= 17 &&
+            hour < 21
+        ) {
+
+            greeting =
+                "Good Evening";
+
+        }
+        else if (
+            hour >= 21 ||
+            hour < 5
+        ) {
+
+            greeting =
+                "Good Night";
+
+        }
+
+
+        const greetingElement =
+            document.getElementById(
+                "greetingText"
+            );
+
+
+        if (greetingElement) {
+
+            greetingElement.textContent =
+                greeting;
+
+        }
+
+    }
+
+
+    updateGreeting();
+
+
+
+    /* ==========================================
+       USER PROFILE
+    ========================================== */
+
+    function loadDashboardUser() {
+
+
+        const savedUser =
+            localStorage.getItem(
+                "smartCommunityUser"
+            );
+
+
+        if (!savedUser) {
+
+            return;
+
+        }
+
+
+        try {
+
+
+            const user =
+                JSON.parse(
+                    savedUser
+                );
+
+
+            const nameElement =
+                document.getElementById(
+                    "userName"
+                );
+
+
+            const profileName =
+                document.getElementById(
+                    "dashboardProfileName"
+                );
+
+
+            const emailElement =
+                document.getElementById(
+                    "userEmail"
+                );
+
+
+            const cityElement =
+                document.getElementById(
+                    "userCity"
+                );
+
+
+            const profileImage =
+                document.getElementById(
+                    "dashboardProfileImage"
+                );
+
+
+            const pointsElement =
+                document.getElementById(
+                    "userPoints"
+                );
+
+
+            if (nameElement) {
+
+                nameElement.textContent =
+                    user.name || "User";
+
             }
 
-            event.preventDefault();
 
-            const targetUrl = new URL(
-                targetPage,
-                window.location.href
+            if (profileName) {
+
+                profileName.textContent =
+                    user.name || "User";
+
+            }
+
+
+            if (emailElement) {
+
+                emailElement.textContent =
+                    user.email || "No email";
+
+            }
+
+
+            if (cityElement) {
+
+                cityElement.textContent =
+                    user.city || "No city";
+
+            }
+
+
+            if (pointsElement) {
+
+                pointsElement.textContent =
+                    user.points || 0;
+
+            }
+
+
+            if (
+                profileImage &&
+                user.profileImage
+            ) {
+
+                profileImage.src =
+                    user.profileImage;
+
+            }
+
+
+            if (profileImage) {
+
+                profileImage.onerror =
+                    function () {
+
+                        this.src =
+                            "https://i.pravatar.cc/100?img=12";
+
+                    };
+
+            }
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "User loading error:",
+                error
             );
 
-            window.location.assign(
-                targetUrl.href
+        }
+
+    }
+
+
+    loadDashboardUser();
+
+
+
+    /* ==========================================
+       REPORT STATISTICS
+    ========================================== */
+
+    function loadDashboardStatistics() {
+
+
+        const reports =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartCommunityReports"
+                )
+            ) || [];
+
+
+        const totalElement =
+            document.getElementById(
+                "totalReports"
             );
 
-        });
 
-    });
+        const resolvedElement =
+            document.getElementById(
+                "resolvedReports"
+            );
+
+
+        const activeElement =
+            document.getElementById(
+                "activeReports"
+            );
+
+
+        let resolved =
+            0;
+
+
+        let active =
+            0;
+
+
+        reports.forEach(
+            function (report) {
+
+
+                const status =
+                    String(
+                        report.status || ""
+                    ).toLowerCase();
+
+
+                if (
+                    status.includes(
+                        "resolved"
+                    )
+                ) {
+
+                    resolved++;
+
+                }
+                else {
+
+                    active++;
+
+                }
+
+
+            }
+        );
+
+
+        if (totalElement) {
+
+            totalElement.textContent =
+                reports.length;
+
+        }
+
+
+        if (resolvedElement) {
+
+            resolvedElement.textContent =
+                resolved;
+
+        }
+
+
+        if (activeElement) {
+
+            activeElement.textContent =
+                active;
+
+        }
+
+    }
+
+
+    loadDashboardStatistics();
+
+
+
+    /* ==========================================
+       RECENT ISSUES
+    ========================================== */
+
+    function loadRecentIssues() {
+
+
+        const reports =
+            JSON.parse(
+                localStorage.getItem(
+                    "smartCommunityReports"
+                )
+            ) || [];
+
+
+        const container =
+            document.getElementById(
+                "recentIssues"
+            );
+
+
+        if (!container) {
+
+            return;
+
+        }
+
+
+        if (reports.length === 0) {
+
+            return;
+
+        }
+
+
+        container.innerHTML = "";
+
+
+        reports
+            .slice(0, 5)
+            .forEach(
+                function (report) {
+
+
+                    const issue =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    issue.className =
+                        "issue";
+
+
+                    const status =
+                        String(
+                            report.status ||
+                            "Submitted"
+                        );
+
+
+                    let statusClass =
+                        "submitted";
+
+
+                    if (
+                        status
+                            .toLowerCase()
+                            .includes(
+                                "progress"
+                            )
+                    ) {
+
+                        statusClass =
+                            "progress";
+
+                    }
+
+
+                    if (
+                        status
+                            .toLowerCase()
+                            .includes(
+                                "resolved"
+                            )
+                    ) {
+
+                        statusClass =
+                            "resolved";
+
+                    }
+
+
+                    issue.innerHTML = `
+
+                        <div class="issue-info">
+
+                            <div class="issue-icon">
+                                📋
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    ${escapeHtml(
+                                        report.title ||
+                                        "Community Issue"
+                                    )}
+                                </h4>
+
+                                <p>
+                                    ${escapeHtml(
+                                        report.location ||
+                                        "Location not provided"
+                                    )}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <span class="status ${statusClass}">
+                            ${escapeHtml(status)}
+                        </span>
+
+                    `;
+
+
+                    container.appendChild(
+                        issue
+                    );
+
+
+                }
+            );
+
+    }
+
+
+    function escapeHtml(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    loadRecentIssues();
+
 
 
     /* ==========================================
@@ -1226,10 +2297,12 @@
             "notificationButton"
         );
 
+
     const notificationPanel =
         document.getElementById(
             "notificationPanel"
         );
+
 
     const closeNotifications =
         document.getElementById(
@@ -1239,10 +2312,12 @@
 
     function loadNotifications() {
 
+
         const notificationList =
             document.getElementById(
                 "notificationList"
             );
+
 
         const reports =
             JSON.parse(
@@ -1251,7 +2326,8 @@
                 )
             ) || [];
 
-        const registeredEvents =
+
+        const events =
             JSON.parse(
                 localStorage.getItem(
                     "smartCommunityRegisteredEvents"
@@ -1259,38 +2335,44 @@
             ) || [];
 
 
-        let notifications = [];
+        const notifications =
+            [];
 
 
         if (reports.length > 0) {
 
-            const latestReport =
+
+            const latest =
                 reports[0];
+
 
             notifications.push({
 
                 icon: "📋",
 
-                title: "Report Submitted",
+                title:
+                    "Report Submitted",
 
                 message:
-                    `${latestReport.title} • ${latestReport.status}`
+                    `${latest.title || "Community issue"} • ${latest.status || "Submitted"}`
 
             });
 
         }
 
 
-        if (registeredEvents.length > 0) {
+        if (events.length > 0) {
+
 
             notifications.push({
 
                 icon: "📅",
 
-                title: "Event Registration",
+                title:
+                    "Event Registration",
 
                 message:
-                    `You have registered for ${registeredEvents.length} community event${registeredEvents.length > 1 ? "s" : ""}.`
+                    `You have registered for ${events.length} community event${events.length > 1 ? "s" : ""}.`
 
             });
 
@@ -1301,7 +2383,8 @@
 
             icon: "🌱",
 
-            title: "Community Update",
+            title:
+                "Community Update",
 
             message:
                 "Thank you for contributing to a smarter community."
@@ -1309,19 +2392,23 @@
         });
 
 
-        notificationList.innerHTML = "";
+        notificationList.innerHTML =
+            "";
 
 
         notifications.forEach(
             function (notification) {
+
 
                 const item =
                     document.createElement(
                         "div"
                     );
 
+
                 item.className =
                     "notification-item";
+
 
                 item.innerHTML = `
 
@@ -1332,16 +2419,21 @@
                     <div class="notification-content">
 
                         <h4>
-                            ${notification.title}
+                            ${escapeHtml(
+                                notification.title
+                            )}
                         </h4>
 
                         <p>
-                            ${notification.message}
+                            ${escapeHtml(
+                                notification.message
+                            )}
                         </p>
 
                     </div>
 
                 `;
+
 
                 notificationList.appendChild(
                     item
@@ -1357,12 +2449,16 @@
         "click",
         function (event) {
 
+
             event.stopPropagation();
+
 
             loadNotifications();
 
+
             notificationPanel.style.display =
-                notificationPanel.style.display === "block"
+                notificationPanel.style.display ===
+                "block"
                     ? "none"
                     : "block";
 
@@ -1373,6 +2469,7 @@
     closeNotifications.addEventListener(
         "click",
         function () {
+
 
             notificationPanel.style.display =
                 "none";
@@ -1385,6 +2482,7 @@
         "click",
         function (event) {
 
+
             if (
                 !notificationPanel.contains(
                     event.target
@@ -1394,6 +2492,7 @@
                 )
             ) {
 
+
                 notificationPanel.style.display =
                     "none";
 
@@ -1401,6 +2500,7 @@
 
         }
     );
+
 
 
     /* ==========================================
@@ -1419,7 +2519,10 @@
         );
 
 
-    if (savedDarkMode === "true") {
+    if (
+        savedDarkMode ===
+        "true"
+    ) {
 
         document.body.classList.add(
             "dark-mode"
@@ -1432,14 +2535,17 @@
         "click",
         function () {
 
+
             document.body.classList.toggle(
                 "dark-mode"
             );
+
 
             const enabled =
                 document.body.classList.contains(
                     "dark-mode"
                 );
+
 
             localStorage.setItem(
                 "smartCommunityDarkMode",
@@ -1450,253 +2556,12 @@
     );
 
 
-    /* ==========================================
-       DYNAMIC USER PROFILE
-    ========================================== */
-
-    function loadDashboardProfile() {
-
-        const savedUser =
-            localStorage.getItem(
-                "smartCommunityUser"
-            );
-
-
-        if (!savedUser) {
-            return;
-        }
-
-
-        try {
-
-            const user =
-                JSON.parse(
-                    savedUser
-                );
-
-
-            /* USER NAME */
-
-            const profileName =
-                document.getElementById(
-                    "dashboardProfileName"
-                );
-
-            const welcomeName =
-                document.getElementById(
-                    "userName"
-                );
-
-
-            if (profileName) {
-
-                profileName.textContent =
-                    user.name || "User";
-
-            }
-
-
-            if (welcomeName) {
-
-                welcomeName.textContent =
-                    user.name || "User";
-
-            }
-
-
-            /* USER EMAIL */
-
-            const userEmail =
-                document.getElementById(
-                    "userEmail"
-                );
-
-
-            if (userEmail) {
-
-                userEmail.textContent =
-                    user.email || "No email";
-
-            }
-
-
-            /* USER CITY */
-
-            const userCity =
-                document.getElementById(
-                    "userCity"
-                );
-
-
-            if (userCity) {
-
-                userCity.textContent =
-                    user.city || "No city";
-
-            }
-
-
-            /* USER POINTS */
-
-            const userPoints =
-                document.getElementById(
-                    "userPoints"
-                );
-
-
-            if (userPoints) {
-
-                userPoints.textContent =
-                    user.points || 0;
-
-            }
-
-
-            /* PROFILE IMAGE */
-
-            const profileImage =
-                document.getElementById(
-                    "dashboardProfileImage"
-                );
-
-
-            if (
-                profileImage &&
-                user.profileImage
-            ) {
-
-                profileImage.src =
-                    user.profileImage;
-
-            }
-
-
-            /* DEFAULT IMAGE IF IMAGE FAILS */
-
-            if (profileImage) {
-
-                profileImage.onerror =
-                    function () {
-
-                        this.src =
-                            "https://i.pravatar.cc/100?img=12";
-
-                    };
-
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Failed to load dashboard profile:",
-                error
-            );
-
-        }
-
-    }
-
-
-    loadDashboardProfile();
-
-
-    /* ==========================================
-       DYNAMIC REPORT STATISTICS
-    ========================================== */
-
-    function loadReportStatistics() {
-
-        const reports =
-            JSON.parse(
-                localStorage.getItem(
-                    "smartCommunityReports"
-                )
-            ) || [];
-
-
-        const totalReports =
-            document.getElementById(
-                "totalReports"
-            );
-
-
-        const resolvedReports =
-            document.getElementById(
-                "resolvedReports"
-            );
-
-
-        const activeReports =
-            document.getElementById(
-                "activeReports"
-            );
-
-
-        if (totalReports) {
-
-            totalReports.textContent =
-                reports.length;
-
-        }
-
-
-        let resolved = 0;
-        let active = 0;
-
-
-        reports.forEach(
-            function (report) {
-
-                const status =
-                    String(
-                        report.status || ""
-                    ).toLowerCase();
-
-
-                if (
-                    status.includes(
-                        "resolved"
-                    )
-                ) {
-
-                    resolved++;
-
-                } else {
-
-                    active++;
-
-                }
-
-            }
-        );
-
-
-        if (resolvedReports) {
-
-            resolvedReports.textContent =
-                resolved;
-
-        }
-
-
-        if (activeReports) {
-
-            activeReports.textContent =
-                active;
-
-        }
-
-    }
-
-
-    loadReportStatistics();
-
 </script>
 
 
-<!-- AUTHENTICATION -->
-
 <script src="../js/auth.js"></script>
 
+
 </body>
+
 </html>
