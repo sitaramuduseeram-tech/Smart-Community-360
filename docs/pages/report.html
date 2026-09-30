@@ -849,35 +849,104 @@
 
     /* FORM SUBMISSION */
 
-    reportForm.addEventListener("submit", function (event) {
+    reportForm.addEventListener("submit", function (e) {
 
-        event.preventDefault();
+        e.preventDefault();
 
-
-        const generatedId =
+        const reportId =
             "SC360-" +
             Math.floor(100000 + Math.random() * 900000);
 
+        const report = {
+            id: reportId,
 
-        reportId.textContent = generatedId;
+            title: document.getElementById("title").value.trim(),
 
-        successMessage.style.display = "block";
+            category:
+                document.getElementById("category").value,
+
+            priority:
+                document.getElementById("priority").value,
+
+            description:
+                document.getElementById("description").value.trim(),
+
+            location:
+                document.getElementById("location").value.trim(),
+
+            urgency:
+                document.querySelector(
+                    'input[name="urgency"]:checked'
+                )?.value || "Normal",
+
+            status: "Submitted",
+
+            date: new Date().toLocaleString(),
+
+            user: JSON.parse(
+                localStorage.getItem("smartCommunityUser")
+            ) || null
+        };
 
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        // Get existing reports
 
+        const existingReports =
+            JSON.parse(
+                localStorage.getItem("smartCommunityReports")
+            ) || [];
+
+
+        // Add new report
+
+        existingReports.unshift(report);
+
+
+        // Save reports
+
+        localStorage.setItem(
+            "smartCommunityReports",
+            JSON.stringify(existingReports)
+        );
+
+
+        // Show success message
+
+        const successMessage =
+            document.getElementById("successMessage");
+
+        const reportIdElement =
+            document.getElementById("generatedReportId");
+
+
+        if (reportIdElement) {
+            reportIdElement.textContent = reportId;
+        }
+
+
+        if (successMessage) {
+            successMessage.style.display = "block";
+        }
+
+
+        // Scroll to success message
+
+        if (successMessage) {
+            successMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+
+        // Reset form
 
         reportForm.reset();
 
-        fileName.textContent = "";
-
 
         console.log(
-            "Report submitted:",
-            generatedId
+            "Report saved successfully:",
+            report
         );
 
     });
